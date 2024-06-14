@@ -1,4 +1,4 @@
-import PocketBase from 'pocketbase';
+import PocketBase, { type AuthModel } from 'pocketbase';
 
 import type { Handle } from '@sveltejs/kit';
 import { env } from '$env/dynamic/public';
@@ -7,14 +7,15 @@ import type { AuthSystemFields, TypedPocketBase, UsersRecord } from '$lib/models
 
 
 export const handle: Handle = async ({ event, resolve }) => {
-	event.locals.pb = new PocketBase(env.PUBLIC_API_URL) as TypedPocketBase;
+	// event.locals.pb = new PocketBase(env.PUBLIC_API_URL) as TypedPocketBase;
+	event.locals.pb = new PocketBase(env.PUBLIC_API_URL);
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
 
 	try {
 		if (event.locals.pb.authStore.isValid) {
 			await event.locals.pb.collection('users').authRefresh();
 			// Add type user
-			event.locals.user = serializeNonPOJOs<AuthSystemFields<UsersRecord>>(event.locals.pb.authStore.model);
+			event.locals.user = serializeNonPOJOs<AuthModel>(event.locals.pb.authStore.model);
 		}
 	} catch (_) {
 		event.locals.pb.authStore.clear();
