@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.postcss';
-	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
+	import { AppShell, initializeStores, Modal, Toast } from '@skeletonlabs/skeleton';
 
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
@@ -9,10 +9,14 @@
 	import SidebarPage from '$lib/components/SidebarPage.svelte';
 	import Copyright from '$lib/components/Copyright.svelte';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+
+	initializeStores();
 </script>
 
+<Modal />
+<Toast />
 <!-- App Shell -->
-<AppShell>
+<AppShell slotPageContent="content-grid">
 	<svelte:fragment slot="header">
 		<HeaderPage />
 	</svelte:fragment>
