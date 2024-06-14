@@ -1,25 +1,98 @@
 <script lang="ts">
+	import { superForm } from 'sveltekit-superforms/client';
 	import type { PageData } from './$types';
-	import { enhance } from '$app/forms';
+	import Password from '$lib/components/Password.svelte';
+	import { goto } from '$app/navigation';
+	import { getToastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 
 	export let data: PageData;
+	const toastStore = getToastStore();
+
+	// Client API:
+	const { form, errors, enhance, message } = superForm(data.form, {
+		resetForm: false
+	});
+
+	$: if (data.form.posted) {
+		const t: ToastSettings = {
+			message: 'Connexion réussie, redirection en cours...',
+			background: 'bg-success-500',
+			timeout: 3000,
+			callback: (response) => {
+				if (response.status === 'closed') goto('/teams');
+			}
+		};
+		toastStore.trigger(t);
+	}
+
+	$: if ($message) {
+		const t: ToastSettings = {
+			message: $message,
+			background: 'bg-error-500',
+			timeout: 3000
+		};
+		toastStore.trigger(t);
+	}
 </script>
 
+<svelte:head>
+	<title>Login to Handy Team</title>
+</svelte:head>
 
-<h1>Login</h1>
+<section id="login-form" class="flex h-screen flex-col items-center justify-center">
+	<div class="bg-surface-300-600-token w-full max-w-md p-8 shadow-md rounded-container-token">
+		<h1 class="mb-8 text-center text-4xl font-bold">Login</h1>
+		<form class="space-y-6" use:enhance action="?/login" method="POST">
+			<div>
+				<!-- svelte-ignore a11y-label-has-associated-control -->
+				<label class="ml-2 block text-sm font-medium">Email Address</label>
+				<input
+					class="mt-1 block w-full border border-gray-300 px-3 py-2 shadow-sm rounded-token focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+					type="email"
+					name="email"
+					placeholder="Example: myteam@gmail.com"
+					aria-invalid={$errors.email ? 'true' : undefined}
+					bind:value={$form.email}
+				/>
+				{#if $errors.email}
+					<p class="mt-2 text-sm text-error-500">{$errors.email}</p>
+				{/if}
+			</div>
+			<div>
+				<Password
+					classLabel="block text-sm font-medium  ml-2"
+					classInput="mt-1 block w-full border border-gray-300 rounded-token shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+					bind:value={$form.password}
+					error={$errors.password}
+				/>
 
-<form action="?/login" method="POST" use:enhance>
-	<input type="email" name="email" />
-	<input type="password" name="password" />
-	<button type="submit">Login</button>
-</form>
-
-<b>Loading... (charge in 3 seconds)</b>
-<code>
-	route /user-panel -> in load -> await new Promise((resolve) => setTimeout(resolve, 3000))
-</code>
-<p>
-	It simulates a data load delay because if two users (who are logged in) refresh the page 2 times
-	almost at the same time it turns out that one session comes to replace the other, it is as if the
-	sessions had crossed.
-</p>
+				<!-- <button
+					class="mt-2 ml-1 text-sm text-indigo-600 hover:text-indigo-500"
+					tabindex="-1"
+					formaction="?/forgot">Mots de passe oublié ?</button
+				> -->
+			</div>
+			<div class="flex w-full flex-nowrap justify-between gap-2">
+				<!-- two button -->
+				<button
+					class="btn-lg variant-gradient-primary-secondary w-full text-nowrap bg-gradient-to-br rounded-token hover:bg-primary-active-token"
+					type="submit"
+					tabindex="0"
+				>
+					Se connecter
+				</button>
+				<button
+					class="btn-lg variant-gradient-secondary-primary w-full text-nowrap bg-gradient-to-br rounded-token hover:bg-secondary-active-token"
+					type="button"
+					tabindex="0"
+					on:click={() => {
+						// Redirect to the register page
+						goto('/register');
+					}}
+				>
+					S'enregistrer
+				</button>
+			</div>
+		</form>
+	</div>
+</section>
