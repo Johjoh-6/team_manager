@@ -11,19 +11,19 @@
 	// Client API:
 	const { form, errors, enhance, message } = superForm(data.form, {
 		resetForm: false,
-		onResult({ result }) {
-			if (result.status === 200) {
-				const t: ToastSettings = {
-					message: 'Connexion réussie, redirection en cours...',
-					background: 'bg-success-500',
-					timeout: 3000,
-					callback: (response) => {
-						if (response.status === 'closed') goto('/teams');
-					}
-				};
-				toastStore.trigger(t);
+        onResult({result}){
+            if(result.status === 200){
+                const t: ToastSettings = {
+			message: 'Creation de compte réussie, un email de confirmation vous a été envoyé.',
+			background: 'bg-success-500',
+			timeout: 5000,
+			callback: (response) => {
+				if (response.status === 'closed') goto('/login');
 			}
-		}
+		};
+		toastStore.trigger(t);
+            }
+        }
 	});
 
 	$: if ($message) {
@@ -37,13 +37,28 @@
 </script>
 
 <svelte:head>
-	<title>Se connecter Handy Team</title>
+	<title>S'enregistrer Handy Team</title>
 </svelte:head>
 
-<section id="login-form" class="flex h-screen flex-col items-center justify-center">
+<section id="register-form" class="flex h-screen flex-col items-center justify-center">
 	<div class="bg-surface-300-600-token w-full max-w-md p-8 shadow-md rounded-container-token">
-		<h1 class="mb-8 text-center text-4xl font-bold">Connexion</h1>
-		<form class="space-y-6" use:enhance action="?/login" method="POST">
+		<h1 class="mb-8 text-center text-4xl font-bold">S'enregistrer</h1>
+		<form class="space-y-6" use:enhance action="?/register" method="POST">
+            <div>
+                <!-- svelte-ignore a11y-label-has-associated-control -->
+				<label class="ml-2 block text-sm font-medium">Pseudo <span class="text-xs opacity-85">: optionel</span></label>
+				<input
+					class="mt-1 block w-full border border-gray-300 px-3 py-2 shadow-sm rounded-token focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+					type="text"
+					name="text"
+					placeholder="team admin"
+					aria-invalid={$errors.username ? 'true' : undefined}
+					bind:value={$form.username}
+				/>
+				{#if $errors.username}
+					<p class="mt-2 text-sm text-error-500">{$errors.username}</p>
+				{/if}
+            </div>
 			<div>
 				<!-- svelte-ignore a11y-label-has-associated-control -->
 				<label class="ml-2 block text-sm font-medium">E-mail</label>
@@ -66,21 +81,25 @@
 					bind:value={$form.password}
 					error={$errors.password}
 				/>
-
-				<!-- <button
-					class="mt-2 ml-1 text-sm text-indigo-600 hover:text-indigo-500"
-					tabindex="-1"
-					formaction="?/forgot">Mots de passe oublié ?</button
-				> -->
 			</div>
+            <div>
+                <Password
+                    name="passwordConfirmation"
+                    textLabel="Confirmer le mot de passe"
+					classLabel="block text-sm font-medium  ml-2"
+					classInput="mt-1 block w-full border border-gray-300 rounded-token shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+					bind:value={$form.passwordConfirmation}
+					error={$errors.passwordConfirmation}
+				/>
+            </div>
 			<div class="flex w-full flex-nowrap justify-between gap-2">
 				<!-- two button -->
-				<button
+				<button 
 					class="btn-lg variant-gradient-primary-secondary w-full text-nowrap bg-gradient-to-br rounded-token hover:bg-primary-active-token"
 					type="submit"
 					tabindex="0"
 				>
-					Se connecter
+					S'enregistrer
 				</button>
 				<button
 					class="btn-lg variant-gradient-secondary-primary w-full text-nowrap bg-gradient-to-br rounded-token hover:bg-secondary-active-token"
@@ -88,10 +107,10 @@
 					tabindex="0"
 					on:click={() => {
 						// Redirect to the register page
-						goto('/register');
+						goto('/login');
 					}}
 				>
-					S'enregistrer
+					Se connecter
 				</button>
 			</div>
 		</form>
