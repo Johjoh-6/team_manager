@@ -1,11 +1,12 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import type { TeamsRecord } from '$lib/models/pocketbase-types';
 	import HeroBanner from '$lib/components/HeroBanner.svelte';
+	import type { RecordModel } from 'pocketbase';
 
 	export let data: PageData;
-	const team: TeamsRecord | null = data.team as TeamsRecord | null;
+	const team: RecordModel | null = data.team as RecordModel | null;
 	console.log(team);
+
 </script>
 
 <svelte:head>
@@ -14,9 +15,34 @@
 
 <HeroBanner name={team?.name} />
 {#if team}
-	<p>team</p>
+<section class="grid grid-cols-1 gap-4 md:grid-cols-2">
+	<div class="card">
+		<header class="card-header">
+			<h2 class="text-xl font-semibold text-primary-500">Nombre de joueurs</h2>
+		</header>
+		<section class="p-4">
+			<p class="text-4xl">
+				{team.expand?.players.lenght}
+			</p>
+		</section>
+	</div>
+</section>
+	<!-- <section class="grid grid-cols-1 gap-4 md:grid-cols-2">
+		<div class="card">
+			<header class="card-header">
+				<h2 class="text-xl font-semibold text-primary-500">Prochaine évenement</h2>
+			</header>
+			<section class="p-4">
+				<p>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam repellat harum quo nobis
+					assumenda minus aliquid mollitia nihil iusto. Molestiae vero inventore tenetur atque sed
+					laboriosam asperiores deserunt nam. Mollitia!
+				</p>
+			</section>
+		</div>
+	</section> -->
 {:else}
-	<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+	<section class="grid grid-cols-1 gap-4 md:grid-cols-2">
 		<div class="card">
 			<header class="card-header">
 				<h2 class="text-xl font-semibold text-primary-500">Crée ton équipe</h2>
@@ -55,5 +81,5 @@
 				>
 			</footer>
 		</div>
-	</div>
+	</section>
 {/if}
