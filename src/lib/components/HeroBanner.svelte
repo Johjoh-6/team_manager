@@ -23,7 +23,7 @@
 
 <style lang="postcss">
 	.banner-hero {
-		height: 30vh;
+		height: 25vh;
 		isolation: isolate;
 	}
 	.banner-hero::after {
@@ -35,7 +35,7 @@
 	}
 	@media (min-width: 640px) {
 		.banner-hero {
-			height: 40vh;
+			height: 35vh;
 		}
 	}
 </style>
