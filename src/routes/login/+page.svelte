@@ -16,7 +16,7 @@
 			console.log(result);
 			if (result.status === 200) {
 				const t: ToastSettings = {
-					message: 'Connexion réussie, redirection en cours...',
+					message: 'Connexion réussie',
 					background: 'bg-success-500',
 					timeout: 3000
 				};
