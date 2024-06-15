@@ -28,13 +28,13 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 				switch (true) {
 					case isManager:
 						return await locals.pb.collection('teams').getFirstListItem(`manager="${userId}"`, {
-							fields: '*,expand.manager.last_name,expand.manager.first_name,expand.players.*,expand.sport.name',
-							expand: 'sport,manager,players',
+							fields: '*,expand.manager.last_name,expand.manager.first_name,expand.sport.name',
+							expand: 'sport,manager',
 						});
 					case isPlayer:
 						return await locals.pb.collection('teams').getFirstListItem(`players?="${userId}"`, {
-							expand: 'sport,manager,players',
-							fields: '*,expand.manager.last_name,expand.manager.first_name,expand.players.*,expand.sport.name',
+							expand: 'sport,manager',
+							fields: '*,expand.manager.last_name,expand.manager.first_name,expand.sport.name',
 						});
 					case isUser:
 						return null;
@@ -48,7 +48,7 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 
 		const getNextEvent = async (): Promise<RecordModel[] | null> => {
 			try {
-				const list = await locals.pb.collection('events').getList(1, 5, {
+				const list = await locals.pb.collection('events').getList(1, 2, {
 					fields: '*,expand.type.name',
 					expand: 'type',
 					filter: 'date_start>@now'
@@ -59,20 +59,48 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 			}
 		};
 
+		const getPlayers = async (): Promise<RecordModel[] | null> => {
+			try {
+				const list = await locals.pb.collection('players').getList(1, 100, {
+					fields: '*,expand.position.name',
+					expand: 'position',
+				});
+				return list.items.length > 0 ? list.items : null;
+			} catch (error) {
+				return null;
+			}
+		}
+
+		const getMatchHistory = async (): Promise<RecordModel[] | null> => {
+			try {
+				const list = await locals.pb.collection('match_history').getList(1, 3, {
+					fields: '*,expand.team_opponent.name',
+					expand: 'team_opponent',
+				});
+				return list.items.length > 0 ? list.items : null;
+			} catch (error) {
+				return null;
+			}
+		}
+
 		return {
 			isConnected: !!user,
 			isPlayer: isPlayer,
 			isManager: isManager,
 			nextEvent: await getNextEvent(),
-			team: await getTeam()
+			team: await getTeam(),
+			players: await getPlayers(),
+			matchHistory: await	getMatchHistory(),
 		};
 	} catch (error) {
-		console.info('error return');
 		return {
 			team: null,
 			isPlayer: false,
 			isManager: false,
-			isConnected: false
+			isConnected: false,
+			nextEvent: null,
+			players: null,
+			matchHistory: null,
 		};
 	}
 };
