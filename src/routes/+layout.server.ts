@@ -7,7 +7,7 @@ import { Roles } from '$lib/enum/rolesEnum';
 export const load: LayoutServerLoad = async ({ locals }) => {
 	if (!locals.user) {
 		return {
-			team: [],
+			team: null,
 			isPlayer: false,
 			isManager: false,
 			isConnected: false
@@ -15,7 +15,7 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 	}
 	if (!locals.pb.authStore.isValid) {
 		return {
-			team: [],
+			team: null,
 			isPlayer: false,
 			isManager: false,
 			isConnected: false
@@ -27,7 +27,7 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 	const roles: RolesRecord[] | null = user.expand.role;
 	if (!roles) {
 		return {
-			team: [],
+			team: null,
 			isPlayer: false,
 			isManager: false,
 			isConnected: false
