@@ -10,8 +10,9 @@
 	export let data: PageData;
 	const team: RecordModel | null = data.team as RecordModel | null;
 	const nextEvent: RecordModel[] | null = data.nextEvent as RecordModel[] | null;
-	// console.log(nextEvent);
-	console.log(team);
+	const players: RecordModel[] | null = data.players as RecordModel[] | null;
+	const matchHistory: RecordModel[] | null = data.matchHistory as RecordModel[] | null;
+
 </script>
 
 <svelte:head>
@@ -28,7 +29,7 @@
 					<img
 						src={getImageURL(team.collectionId, team.id, team.logo, '24x24')}
 						alt="Logo de l'équipe"
-						class="logo mx-auto h-24 w-24 logo-shadow dark:logo-shadow"
+						class="logo logo-shadow dark:logo-shadow mx-auto h-24 w-24"
 					/>
 				{:else}
 					<p class="text-center text-lg">Pas de logo</p>
@@ -43,7 +44,7 @@
 				<h2 slot="header" class="text-center text-xl font-semibold text-primary-500">
 					Nombre de joueurs
 				</h2>
-				<p class="text-center text-2xl font-bold">{team?.expand?.players?.length ?? 0}</p>
+				<p class="text-center text-2xl font-bold">{players ? players.length : 0}</p>
 			</CardsBasic>
 			<!-- Next Event Card -->
 			<CardsBasic
@@ -77,19 +78,22 @@
 			</CardsBasic>
 
 			<!-- List of Players Card -->
-			 <CardsBasic classCard="col-span-2 card-hover" urlToGo="/players" classCardBody="flex flex-col gap-1" >
+			<CardsBasic
+				classCard="col-span-2 card-hover"
+				urlToGo="/players"
+				classCardBody="flex flex-col gap-1"
+			>
 				<h2 slot="header" class="text-xl font-semibold text-primary-500">Liste des joueurs</h2>
 				<section class="p-4">
-					{#if team?.expand?.players?.length > 0}
+					{#if players}
 						<ul>
-							{#each team?.expand?.players as player}
-								<li class="flex flex-nowrap items-center gap-2 w-full justify-between">
+							{#each players as player}
+								<li class="flex w-full flex-nowrap items-center justify-between gap-2">
 									<Avatar
 										initials={`${player.first_name?.charAt(0) ?? ''}${player.last_name?.charAt(0) ?? ''}`}
-										src={getImageURL(player.collectionId, player.id, player.picture, '24x24')}
+										src={getImageURL(player.collectionId, player.id, player.picture, '24x24') ?? ''}
 										alt="Photos du joueur"
 										class="avatar"
-
 									/>
 									<p class="p-2">
 										<strong class="capitalize">
@@ -97,10 +101,10 @@
 										</strong>
 										{' '}
 										{player.first_name ?? 'Non renseigné'}
-										</p>
-										<p class="font-semibold text-xl">
-											{player.player_number ?? '?'}
-										</p>
+									</p>
+									<p class="text-xl font-semibold">
+										{player.player_number ?? '?'}
+									</p>
 								</li>
 							{/each}
 						</ul>
@@ -109,57 +113,40 @@
 					{/if}
 				</section>
 			</CardsBasic>
-			<!-- <div class="card">
-		<header class="card-header">
-		  <h2 class="text-xl font-semibold text-primary-500">Liste des joueurs</h2>
-		</header>
-		<section class="p-4">
-		  {#if team.expand.players.length > 0}
-			<ul>
-			  {#each team.expand.players as player}
-				<li>{player.name}</li>
-			  {/each}
-			</ul>
-		  {:else}
-			<p>Aucun joueur dans l'équipe</p>
-		  {/if}
+
+			<!-- Match History Card -->
+			<CardsBasic
+				classCard="col-span-2 card-hover"
+				urlToGo="/match-history"
+				classCardBody="flex flex-col gap-1"
+			>
+				<h2 slot="header" class="text-xl font-semibold text-primary-500">
+					Historique des derniers matchs
+				</h2>
+				<section class="p-4">
+					{#if matchHistory}
+						<table class="table-compact">
+							<thead class="border-b-2 border-primary-500">
+								<tr>
+									<th>Date</th>
+									<th>Adversaire</th>
+									<th>Résultat</th>
+								</tr>
+							</thead>
+							{#each matchHistory as match}
+								<tr class="text-center">
+									<td>{dateFormatFr(match.match_date)}</td>
+									<td>{match.team_opponent_name}</td>
+									<td>{match.score} / {match.score_opponent}</td>
+								</tr>
+							{/each}
+						</table>
+					{:else}
+						<p>Aucun match joué</p>
+					{/if}
+				</section>
+			</CardsBasic>
 		</section>
-	  </div>
-	
-	  <!-- Match History Card -->
-			<!-- <div class="card">
-		<header class="card-header">
-		  <h2 class="text-xl font-semibold text-primary-500">Historique des matchs</h2>
-		</header>
-		<section class="p-4">
-		  {#if team.matchHistory.length > 0}
-			<ul>
-			  {#each team.matchHistory as match}
-				<li>
-				  <span class="font-bold">{match.date}</span> - {match.opponent}: {match.result}
-				</li>
-			  {/each}
-			</ul>
-		  {:else}
-			<p>Aucun match joué</p>
-		  {/if}
-		</section>
-	  </div> -->
-		</section>
-		<!-- <section class="grid grid-cols-1 gap-4 md:grid-cols-2">
-		<div class="card">
-			<header class="card-header">
-				<h2 class="text-xl font-semibold text-primary-500">Prochaine évenement</h2>
-			</header>
-			<section class="p-4">
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam repellat harum quo nobis
-					assumenda minus aliquid mollitia nihil iusto. Molestiae vero inventore tenetur atque sed
-					laboriosam asperiores deserunt nam. Mollitia!
-				</p>
-			</section>
-		</div>
-	</section> -->
 	{:else}
 		<section class="grid grid-cols-1 gap-4 md:grid-cols-2">
 			<div class="card">
@@ -203,4 +190,3 @@
 		</section>
 	{/if}
 </section>
-
