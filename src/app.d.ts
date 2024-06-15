@@ -11,9 +11,10 @@ export declare global {
 			pb: PocketBase;
 			user: AuthModel | undefined;
 		}
-		// interface PageData {}
+		interface PageData {
+			isConnected: boolean;
+		}
 		// interface PageState {}
 		// interface Platform {}
 	}
 }
-
