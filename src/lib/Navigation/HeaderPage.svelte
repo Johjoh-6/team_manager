@@ -7,9 +7,6 @@
 
 	const drawerStore = getDrawerStore();
 
-	// access to page data
-	console.log($page);
-
 	const handleClick = () => {
 		// TODO add menu logic here. Drawer or sidebar
 		if ($page.data.isConnected) {
