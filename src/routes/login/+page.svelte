@@ -11,17 +11,18 @@
 	// Client API:
 	const { form, errors, enhance, message } = superForm(data.form, {
 		resetForm: false,
+		applyAction: false,
 		onResult({ result }) {
+			console.log(result);
 			if (result.status === 200) {
 				const t: ToastSettings = {
 					message: 'Connexion réussie, redirection en cours...',
 					background: 'bg-success-500',
-					timeout: 3000,
-					callback: (response) => {
-						if (response.status === 'closed') goto('/teams');
-					}
+					timeout: 3000
 				};
 				toastStore.trigger(t);
+
+				return;
 			}
 		}
 	});

@@ -11,19 +11,19 @@
 	// Client API:
 	const { form, errors, enhance, message } = superForm(data.form, {
 		resetForm: false,
-        onResult({result}){
-            if(result.status === 200){
-                const t: ToastSettings = {
-			message: 'Creation de compte réussie, un email de confirmation vous a été envoyé.',
-			background: 'bg-success-500',
-			timeout: 5000,
-			callback: (response) => {
-				if (response.status === 'closed') goto('/login');
+		onResult({ result }) {
+			if (result.status === 200) {
+				const t: ToastSettings = {
+					message: 'Creation de compte réussie, un email de confirmation vous a été envoyé.',
+					background: 'bg-success-500',
+					timeout: 5000,
+					callback: (response) => {
+						if (response.status === 'closed') goto('/login');
+					}
+				};
+				toastStore.trigger(t);
 			}
-		};
-		toastStore.trigger(t);
-            }
-        }
+		}
 	});
 
 	$: if ($message) {
@@ -44,9 +44,11 @@
 	<div class="bg-surface-300-600-token w-full max-w-md p-8 shadow-md rounded-container-token">
 		<h1 class="mb-8 text-center text-4xl font-bold">S'enregistrer</h1>
 		<form class="space-y-6" use:enhance action="?/register" method="POST">
-            <div>
-                <!-- svelte-ignore a11y-label-has-associated-control -->
-				<label class="ml-2 block text-sm font-medium">Pseudo <span class="text-xs opacity-85">: optionel</span></label>
+			<div>
+				<!-- svelte-ignore a11y-label-has-associated-control -->
+				<label class="ml-2 block text-sm font-medium"
+					>Pseudo <span class="text-xs opacity-85">: optionel</span></label
+				>
 				<input
 					class="mt-1 block w-full border border-gray-300 px-3 py-2 shadow-sm rounded-token focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
 					type="text"
@@ -58,7 +60,7 @@
 				{#if $errors.username}
 					<p class="mt-2 text-sm text-error-500">{$errors.username}</p>
 				{/if}
-            </div>
+			</div>
 			<div>
 				<!-- svelte-ignore a11y-label-has-associated-control -->
 				<label class="ml-2 block text-sm font-medium">E-mail</label>
@@ -82,19 +84,19 @@
 					error={$errors.password}
 				/>
 			</div>
-            <div>
-                <Password
-                    name="passwordConfirmation"
-                    textLabel="Confirmer le mot de passe"
+			<div>
+				<Password
+					name="passwordConfirmation"
+					textLabel="Confirmer le mot de passe"
 					classLabel="block text-sm font-medium  ml-2"
 					classInput="mt-1 block w-full border border-gray-300 rounded-token shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
 					bind:value={$form.passwordConfirmation}
 					error={$errors.passwordConfirmation}
 				/>
-            </div>
+			</div>
 			<div class="flex w-full flex-nowrap justify-between gap-2">
 				<!-- two button -->
-				<button 
+				<button
 					class="btn-lg variant-gradient-primary-secondary w-full text-nowrap bg-gradient-to-br rounded-token hover:bg-primary-active-token"
 					type="submit"
 					tabindex="0"

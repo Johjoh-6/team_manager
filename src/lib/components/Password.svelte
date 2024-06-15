@@ -18,8 +18,13 @@
 <label class={classLabel}>
 	<span class={classTextLabel}>{textLabel}</span>
 	<div class="relative">
-		<input class={classInput} type={showPassword ? 'text' : 'password'} {name} {placeholder} value={value}
-		aria-invalid={error ? 'true' : undefined}
+		<input
+			class={classInput}
+			type={showPassword ? 'text' : 'password'}
+			{name}
+			{placeholder}
+			{value}
+			aria-invalid={error ? 'true' : undefined}
 		/>
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		{#if showPassword}
@@ -53,6 +58,6 @@
 		{/if}
 	</div>
 	{#if error}
-		<p class="text-sm mt-1 text-error-500">{error}</p>
+		<p class="mt-1 text-sm text-error-500">{error}</p>
 	{/if}
 </label>
