@@ -48,9 +48,9 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 
 		const getNextEvent = async (): Promise<RecordModel[] | null> => {
 			try {
-				const list = await locals.pb.collection('events').getList(1, 2, {
-					fields: '*,expand.type.name',
+				const list = await locals.pb.collection('events').getList(1, 3, {
 					expand: 'type',
+					fields: '*,expand.type.name',
 					filter: 'date_start>@now'
 				});
 				return list.items.length > 0 ? list.items : null;
@@ -61,9 +61,10 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 
 		const getPlayers = async (): Promise<RecordModel[] | null> => {
 			try {
-				const list = await locals.pb.collection('players').getList(1, 100, {
+				const list = await locals.pb.collection('players').getList(1, 3, {
 					fields: '*,expand.position.name',
 					expand: 'position',
+					sort: '-created'
 				});
 				return list.items.length > 0 ? list.items : null;
 			} catch (error) {
@@ -89,7 +90,7 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 			isManager: isManager,
 			nextEvent: await getNextEvent(),
 			team: await getTeam(),
-			players: await getPlayers(),
+			newPlayers: await getPlayers(),
 			matchHistory: await	getMatchHistory(),
 		};
 	} catch (error) {

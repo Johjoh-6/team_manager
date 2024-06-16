@@ -10,7 +10,7 @@
 	export let data: PageData;
 	const team: RecordModel | null = data.team as RecordModel | null;
 	const nextEvent: RecordModel[] | null = data.nextEvent as RecordModel[] | null;
-	const players: RecordModel[] | null = data.players as RecordModel[] | null;
+	const newPlayers: RecordModel[] | null = data.newPlayers as RecordModel[] | null;
 	const matchHistory: RecordModel[] | null = data.matchHistory as RecordModel[] | null;
 
 </script>
@@ -83,11 +83,11 @@
 				urlToGo="/players"
 				classCardBody="flex flex-col gap-1"
 			>
-				<h2 slot="header" class="text-xl font-semibold text-primary-500">Liste des joueurs</h2>
+				<h2 slot="header" class="text-xl font-semibold text-primary-500">Nouveaux joueurs</h2>
 				<section class="p-4">
-					{#if players}
+					{#if newPlayers}
 						<ul>
-							{#each players as player}
+							{#each newPlayers as player}
 								<li class="flex w-full flex-nowrap items-center justify-between gap-2">
 									<Avatar
 										src={player.picture != '' ? getImageURL(player.collectionId, player.id, player.picture, '24x24') : '/avatar.jpg'}
