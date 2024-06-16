@@ -12,7 +12,6 @@
 	const nextEvent: RecordModel[] | null = data.nextEvent as RecordModel[] | null;
 	const newPlayers: RecordModel[] | null = data.newPlayers as RecordModel[] | null;
 	const matchHistory: RecordModel[] | null = data.matchHistory as RecordModel[] | null;
-
 </script>
 
 <svelte:head>
@@ -23,7 +22,11 @@
 	<HeroBanner name={team?.name} />
 	{#if team?.id}
 		<section class="grid grid-cols-2 gap-4 md:grid-cols-4">
-			<CardsBasic classCard="card-hover" classCardBody="flex flex-col gap-1" urlToGo="/teams/{team?.id}">
+			<CardsBasic
+				classCard="card-hover"
+				classCardBody="flex flex-col gap-1"
+				urlToGo="/teams/{team?.id}"
+			>
 				<p class="text-center text-2xl font-bold">{team?.name}</p>
 				{#if team.logo}
 					<img
@@ -90,11 +93,13 @@
 							{#each newPlayers as player}
 								<li class="flex w-full flex-nowrap items-center justify-between gap-2">
 									<Avatar
-										src={player.picture != '' ? getImageURL(player.collectionId, player.id, player.picture, '24x24') : '/avatar.jpg'}
+										src={player.picture != ''
+											? getImageURL(player.collectionId, player.id, player.picture, '24x24')
+											: '/avatar.jpg'}
 										fallback="/avatar.jpg"
 										alt="Photos du joueur"
 										class="avatar"
-									/>	
+									/>
 									<p class="p-2">
 										<strong class="capitalize">
 											{player.last_name ?? 'Non renseigné'}
@@ -123,26 +128,26 @@
 				<h2 slot="header" class="text-xl font-semibold text-primary-500">
 					Historique des derniers matchs
 				</h2>
-					{#if matchHistory}
-						<table class="table-compact">
-							<thead class="border-b-2 border-primary-500">
-								<tr>
-									<th>Date</th>
-									<th>Adversaire</th>
-									<th>Résultat</th>
-								</tr>
-							</thead>
-							{#each matchHistory as match}
-								<tr class="text-center">
-									<td>{dateFormatFr(match.match_date)}</td>
-									<td>{match.team_opponent_name}</td>
-									<td>{match.score} / {match.score_opponent}</td>
-								</tr>
-							{/each}
-						</table>
-					{:else}
-						<p>Aucun match joué</p>
-					{/if}
+				{#if matchHistory}
+					<table class="table-compact">
+						<thead class="border-b-2 border-primary-500">
+							<tr>
+								<th>Date</th>
+								<th>Adversaire</th>
+								<th>Résultat</th>
+							</tr>
+						</thead>
+						{#each matchHistory as match}
+							<tr class="text-center">
+								<td>{dateFormatFr(match.match_date)}</td>
+								<td>{match.team_opponent_name}</td>
+								<td>{match.score} / {match.score_opponent}</td>
+							</tr>
+						{/each}
+					</table>
+				{:else}
+					<p>Aucun match joué</p>
+				{/if}
 			</CardsBasic>
 		</section>
 	{:else}

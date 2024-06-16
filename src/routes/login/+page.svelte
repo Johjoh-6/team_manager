@@ -41,7 +41,7 @@
 	<title>Se connecter Handy Team</title>
 </svelte:head>
 
-<section id="login-form" class="place-items-center content-grid h-full">
+<section id="login-form" class="content-grid h-full place-items-center">
 	<div class="bg-surface-300-600-token w-full max-w-md p-8 shadow-md rounded-container-token">
 		<h1 class="mb-8 text-center text-4xl font-bold">Connexion</h1>
 		<form class="space-y-6" use:enhance action="?/login" method="POST">

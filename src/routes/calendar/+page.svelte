@@ -38,11 +38,11 @@
 	const handleSearch = async (): Promise<void> => {
 		goto(`/calendar?search=${search}`);
 	};
-    const handleKeySearch = async (e: KeyboardEvent): Promise<void> => {
-        if (e.key === 'Enter') {
-            goto(`/calendar?search=${search}`);
-        }
-    };
+	const handleKeySearch = async (e: KeyboardEvent): Promise<void> => {
+		if (e.key === 'Enter') {
+			goto(`/calendar?search=${search}`);
+		}
+	};
 	const handleReset = async (): Promise<void> => {
 		console.log('reset');
 		search = '';
@@ -67,8 +67,10 @@
 			>
 		</div>
 		<input type="search" placeholder="événement ..." bind:value={search} />
-		<button class="variant-filled-secondary hover:variant-ghost-secondary" on:click={handleSearch} on:keydown={handleKeySearch}
-			>Trouver</button
+		<button
+			class="variant-filled-secondary hover:variant-ghost-secondary"
+			on:click={handleSearch}
+			on:keydown={handleKeySearch}>Trouver</button
 		>
 	</div>
 
@@ -79,10 +81,15 @@
 			on:click={handleReset}>Retour</button
 		>
 	{:else}
-		<div class="grid md:grid-cols-2 gap-2 lg:grid-cols-4">
+		<div class="grid gap-2 md:grid-cols-2 lg:grid-cols-4">
 			{#each data.events as event}
-				<a href="/calendar/{event.id}" class="card card-hover grid grid-cols-2 grid-rows-2 gap-2 p-2 md:grid-cols-1 md:grid-rows-none">
-					<p class="col-span-2 md:col-span-1 text-center text-lg capitalize">{event.name ?? 'Non renseigné'}</p>
+				<a
+					href="/calendar/{event.id}"
+					class="card card-hover grid grid-cols-2 grid-rows-2 gap-2 p-2 md:grid-cols-1 md:grid-rows-none"
+				>
+					<p class="col-span-2 text-center text-lg capitalize md:col-span-1">
+						{event.name ?? 'Non renseigné'}
+					</p>
 					<span class="badge bg-primary-500 p-2 text-white"
 						>{event?.expand?.type.name ?? 'Non défini'}</span
 					>

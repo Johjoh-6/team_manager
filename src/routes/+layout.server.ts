@@ -1,6 +1,6 @@
 import type { LayoutServerLoad } from './$types';
 import type { RolesRecord } from '$lib/models/pocketbase-types';
-import type {  RecordModel } from 'pocketbase';
+import type { RecordModel } from 'pocketbase';
 import isRole from '$lib/utils/isRole';
 import { Roles } from '$lib/enum/rolesEnum';
 
@@ -29,12 +29,12 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 					case isManager:
 						return await locals.pb.collection('teams').getFirstListItem(`manager="${userId}"`, {
 							fields: '*,expand.manager.last_name,expand.manager.first_name,expand.sport.name',
-							expand: 'sport,manager',
+							expand: 'sport,manager'
 						});
 					case isPlayer:
 						return await locals.pb.collection('teams').getFirstListItem(`players?="${userId}"`, {
 							expand: 'sport,manager',
-							fields: '*,expand.manager.last_name,expand.manager.first_name,expand.sport.name',
+							fields: '*,expand.manager.last_name,expand.manager.first_name,expand.sport.name'
 						});
 					case isUser:
 						return null;
@@ -70,19 +70,19 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 			} catch (error) {
 				return null;
 			}
-		}
+		};
 
 		const getMatchHistory = async (): Promise<RecordModel[] | null> => {
 			try {
 				const list = await locals.pb.collection('match_history').getList(1, 3, {
 					fields: '*,expand.team_opponent.name',
-					expand: 'team_opponent',
+					expand: 'team_opponent'
 				});
 				return list.items.length > 0 ? list.items : null;
 			} catch (error) {
 				return null;
 			}
-		}
+		};
 
 		return {
 			isConnected: !!user,
@@ -91,7 +91,7 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 			nextEvent: await getNextEvent(),
 			team: await getTeam(),
 			newPlayers: await getPlayers(),
-			matchHistory: await	getMatchHistory(),
+			matchHistory: await getMatchHistory()
 		};
 	} catch (error) {
 		return {
@@ -101,8 +101,7 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 			isConnected: false,
 			nextEvent: null,
 			players: null,
-			matchHistory: null,
+			matchHistory: null
 		};
 	}
 };
-

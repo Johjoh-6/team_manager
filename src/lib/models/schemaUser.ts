@@ -27,27 +27,26 @@ const UserRegisterSchema = UserSchema.extend({
 });
 
 const UserEmailSchema = z.object({
-    email: z.string().email('Email invalide')
+	email: z.string().email('Email invalide')
 });
 
 const UserUsernameSchema = z.object({
-	username: z
-		.string()
-		.min(3, "Le nom d'utilisateur doit contenir au moins 3 caractères")
-})
+	username: z.string().min(3, "Le nom d'utilisateur doit contenir au moins 3 caractères")
+});
 
-const UserPasswordSchema = z.object({
-	password: z
-		.string()
-		.min(8, 'Le mot de passe doit contenir au moins 8 caractères')
-		.regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, {
-			message:
-				'Le mot de passe doit contenir au moins une lettre, un chiffre et un caractère spécial'
-		}),
-	passwordConfirmation: z.string()
-}).refine((data) => data.password === data.passwordConfirmation, {
+const UserPasswordSchema = z
+	.object({
+		password: z
+			.string()
+			.min(8, 'Le mot de passe doit contenir au moins 8 caractères')
+			.regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, {
+				message:
+					'Le mot de passe doit contenir au moins une lettre, un chiffre et un caractère spécial'
+			}),
+		passwordConfirmation: z.string()
+	})
+	.refine((data) => data.password === data.passwordConfirmation, {
 		message: 'Les mots de passe ne correspondent pas'
 	});
 
-
-export { UserSchema, UserRegisterSchema, UserEmailSchema, UserUsernameSchema, UserPasswordSchema};
+export { UserSchema, UserRegisterSchema, UserEmailSchema, UserUsernameSchema, UserPasswordSchema };
