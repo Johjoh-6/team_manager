@@ -44,7 +44,7 @@
 				<h2 slot="header" class="text-center text-xl font-semibold text-primary-500">
 					Nombre de joueurs
 				</h2>
-				<p class="text-center text-2xl font-bold">{players ? players.length : 0}</p>
+				<p class="text-center text-2xl font-bold">{newPlayers ? newPlayers.length : 0}</p>
 			</CardsBasic>
 			<!-- Next Event Card -->
 			<CardsBasic
