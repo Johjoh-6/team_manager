@@ -90,11 +90,11 @@
 							{#each players as player}
 								<li class="flex w-full flex-nowrap items-center justify-between gap-2">
 									<Avatar
-										initials={`${player.first_name?.charAt(0) ?? ''}${player.last_name?.charAt(0) ?? ''}`}
-										src={getImageURL(player.collectionId, player.id, player.picture, '24x24') ?? ''}
+										src={player.picture != '' ? getImageURL(player.collectionId, player.id, player.picture, '24x24') : '/avatar.jpg'}
+										fallback="/avatar.jpg"
 										alt="Photos du joueur"
 										class="avatar"
-									/>
+									/>	
 									<p class="p-2">
 										<strong class="capitalize">
 											{player.last_name ?? 'Non renseigné'}
