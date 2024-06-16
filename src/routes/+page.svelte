@@ -123,7 +123,6 @@
 				<h2 slot="header" class="text-xl font-semibold text-primary-500">
 					Historique des derniers matchs
 				</h2>
-				<section class="p-4">
 					{#if matchHistory}
 						<table class="table-compact">
 							<thead class="border-b-2 border-primary-500">
@@ -144,7 +143,6 @@
 					{:else}
 						<p>Aucun match joué</p>
 					{/if}
-				</section>
 			</CardsBasic>
 		</section>
 	{:else}
