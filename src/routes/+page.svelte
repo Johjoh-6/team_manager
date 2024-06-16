@@ -23,7 +23,7 @@
 	<HeroBanner name={team?.name} />
 	{#if team?.id}
 		<section class="grid grid-cols-2 gap-4 md:grid-cols-4">
-			<CardsBasic classCardBody="flex flex-col gap-1">
+			<CardsBasic classCard="card-hover" classCardBody="flex flex-col gap-1" urlToGo="/teams/{team?.id}">
 				<p class="text-center text-2xl font-bold">{team?.name}</p>
 				{#if team.logo}
 					<img
@@ -160,7 +160,7 @@
 				</section>
 				<footer class="card-footer">
 					<a
-						href="/creer"
+						href="/teams/creer"
 						class="btn w-full bg-primary-500 font-bold text-white hover:text-token hover:ring-primary-400-500-token hover:bg-transparent"
 						>Crée</a
 					>
@@ -179,7 +179,7 @@
 				</section>
 				<footer class="card-footer">
 					<a
-						href="/rejoindre"
+						href="/teams"
 						class="btn w-full bg-primary-500 font-bold text-white hover:text-token hover:ring-primary-400-500-token hover:bg-transparent"
 						>Rejoindre</a
 					>
