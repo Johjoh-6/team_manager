@@ -64,7 +64,7 @@ export const actions = {
 			console.error('Error: ', err);
 			if (err instanceof ClientResponseError) {
 				if (err.status === 400) {
-					return message(form, err.message, {
+					return message(form, "Erreur lors de la modification", {
 						status: 400
 					});
 				}

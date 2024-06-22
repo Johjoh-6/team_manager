@@ -2,7 +2,6 @@
 	import { superForm } from 'sveltekit-superforms';
 	import type { PageData } from './$types';
 	import { getToastStore, type ToastSettings } from '@skeletonlabs/skeleton';
-	import SuperDebug from 'sveltekit-superforms';
   
 	export let data: PageData;
   
@@ -38,7 +37,6 @@
   <svelte:head>
 	<title>Modifier l'événement {data.event.name}</title>
   </svelte:head>
-  <SuperDebug data={$form} />
   
   <section class="content-grid content-grid justify-center p-4">
 	<div
@@ -118,34 +116,6 @@
 				  <p class="text-error-500">{$errors.date_end}</p>
 				{/if}
 			  </label>
-
-			<!-- <label class="label" for="date-start">
-				<span>Date de début</span>
-				<input
-					class="input {$errors.date_start && 'input-error'}"
-					type="date"
-					id="date-start"
-					name="date_start"
-					bind:value={$form.date_start}
-				/>
-				{#if $errors.date_start}
-					<p class="text-error-500">{$errors.date_start}</p>
-				{/if}
-			</label>
-
-			<label class="label" for="date-end">
-				<span>Date de fin</span>
-				<input
-					class="input {$errors.date_end && 'input-error'}"
-					type="date"
-					id="date-end"
-					name="date_end"
-					bind:value={$form.date_end}
-				/>
-				{#if $errors.date_end}
-					<p class="text-error-500">{$errors.date_end}</p>
-				{/if}
-			</label> -->
 
 			<label class="label md:col-span-2">
 				<span>Notes </span><span class="text-token text-xs opacity-85"> (facultatif)</span>
