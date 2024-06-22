@@ -78,10 +78,10 @@
 
 			<label class="label" for="sport">
 				<span>Sport</span>
-				<select class="select capitalize" name="sport" id="sport">
+				<select class="select capitalize" name="sport" id="sport" bind:value={$form.sport}>
 					<option value="">Choisir un sport</option>
 					{#each data.sportList as sport}
-						<option value={sport.id}>{sport.name}</option>
+						<option value={sport.id} selected={$form.sport == sport.id}>{sport.name}</option>
 					{/each}
 				</select>
 				{#if $errors.sport}
