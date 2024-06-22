@@ -55,7 +55,17 @@
 </svelte:head>
 
 <section class="content-grid flow">
-	<h1 class="p-2 text-center text-xl">Tous les évenements <strong>({data.totalItems})</strong></h1>
+	<div class="flex p-4">
+		<h1 class="text-center text-xl flex-grow">Tous les évenements <strong>({data.totalItems})</strong></h1>
+		{#if data.isManager}
+			<a
+				href="/calendar/new"
+				class="btn font-bold variant-filled-primary"
+			>
+				Créer un évenement
+			</a>
+		{/if}
+	</div>
 
 	<p>Rechercher un évenement</p>
 	<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
