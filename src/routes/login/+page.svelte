@@ -77,14 +77,14 @@
 			<div class="flex w-full flex-nowrap justify-between gap-2">
 				<!-- two button -->
 				<button
-					class="btn-lg variant-gradient-primary-secondary w-full text-nowrap bg-gradient-to-br rounded-token hover:bg-primary-active-token"
+					class="btn variant-gradient-primary-secondary w-full text-nowrap bg-gradient-to-br rounded-token hover:bg-primary-active-token"
 					type="submit"
 					tabindex="0"
 				>
 					Se connecter
 				</button>
 				<button
-					class="btn-lg variant-gradient-secondary-primary w-full text-nowrap bg-gradient-to-br rounded-token hover:bg-secondary-active-token"
+					class="btn variant-gradient-secondary-primary w-full text-nowrap bg-gradient-to-br rounded-token hover:bg-secondary-active-token"
 					type="button"
 					tabindex="0"
 					on:click={() => {
