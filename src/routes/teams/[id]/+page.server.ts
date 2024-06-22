@@ -11,5 +11,6 @@ export const load = (async ({ params, parent }) => {
 		redirect(303, '/');
 	}
 
+    
 	return { team };
 }) satisfies PageServerLoad;
