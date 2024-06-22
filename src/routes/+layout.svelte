@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.postcss';
-	import { AppShell, initializeStores, Modal, Toast, Drawer } from '@skeletonlabs/skeleton';
+	import { AppShell, initializeStores, Modal, Toast, Drawer, LightSwitch } from '@skeletonlabs/skeleton';
 
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
@@ -19,7 +19,10 @@
 <Modal />
 <Toast />
 <Drawer>
-	<h2 class="p-4 text-xl font-semibold text-primary-500">Menu</h2>
+	<div class="head-drawer">
+		<h2 class="text-xl font-semibold text-primary-500">Menu</h2>
+		<LightSwitch />
+	</div>
 	<hr />
 	<Navigation />
 	<!-- deconection button -->
@@ -46,6 +49,9 @@
 	<!-- Page Route Content -->
 	<svelte:fragment slot="sidebarLeft">
 		<Navigation />
+		<div class="p-4">
+			<LightSwitch  />
+		</div>
 		{#if data.isConnected}
 			<!-- deconection button -->
 			<form action="/api/logout" method="POST">
@@ -72,3 +78,10 @@
 	</svelte:fragment>
 	<!-- (footer) -->
 </AppShell>
+
+
+<style lang="postcss">
+	.head-drawer{
+		@apply flex items-center justify-between p-4;
+	}
+</style>
