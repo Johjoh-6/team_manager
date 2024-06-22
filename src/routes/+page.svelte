@@ -6,6 +6,7 @@
 	import dateFormatFr from '$lib/utils/dateFormatFr';
 	import { getImageURL } from '$lib/utils/getImageUrl';
 	import { Avatar } from '@skeletonlabs/skeleton';
+	import stripString from '$lib/utils/stripString';
 
 	export let data: PageData;
 	const team: RecordModel | null = data.team as RecordModel | null;
@@ -69,7 +70,7 @@
 						</thead>
 						{#each nextEvent as event}
 							<tr class="text-center">
-								<td class="capitalize">{event.name}</td>
+								<td class="capitalize">{stripString(event.name, 10)}</td>
 								<td class="capitalize">{event?.expand?.type.name}</td>
 								<td>{dateFormatFr(event.date_start)}</td>
 							</tr>
@@ -140,7 +141,7 @@
 						{#each matchHistory as match}
 							<tr class="text-center">
 								<td>{dateFormatFr(match.match_date)}</td>
-								<td>{match.team_opponent_name}</td>
+								<td>{stripString(match.team_opponent_name, 10)}</td>
 								<td>{match.score} / {match.score_opponent}</td>
 							</tr>
 						{/each}
