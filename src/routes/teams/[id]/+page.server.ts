@@ -1,16 +1,19 @@
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
-export const load = (async ({ params, parent }) => {
-	const { team } = await parent();
-	const { id } = params;
-	if (!id) {
-		redirect(303, '/');
+export const load = (async ({ params, locals }) => {
+	try {
+		const { id } = params;
+		if (!id) {
+			throw new Error('Id is missing');
+		}
+		const team = await locals.pb.collection('teams').getOne(id, {
+			fields: '*,expand.manager.last_name,expand.manager.first_name,expand.sport.name,expand.players.last_name,expand.players.picture,expand.players.first_name,expand.players.player_number,expand.players.expand.position.name',
+			expand: 'sport,manager,players.position'
+		});
+		return { team };
+	} catch (err) {
+		console.error(err);
+		redirect(303, '/teams');
 	}
-	if (!team) {
-		redirect(303, '/');
-	}
-
-    
-	return { team };
 }) satisfies PageServerLoad;
