@@ -107,11 +107,12 @@
 
 			<label class="label" for="contact-info">
 				<span>Contact </span><span class="text-token text-xs opacity-85"> (facultatif)</span>
-				<input
-					class="input {$errors.contact_info && 'input-error'}"
-					type="text"
+				<textarea
+					class="textarea {$errors.contact_info && 'input-error'}"
+					rows="4"
 					id="contact-info"
 					name="contact-info"
+					placeholder="Contact de l'équipe."
 					bind:value={$form.contact_info}
 				/>
 				{#if $errors.contact_info}
