@@ -1,8 +1,9 @@
+import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ url, locals }) => {
 	if (!locals.user) {
-		throw new Error();
+		redirect(303, '/login');
 	}
 
 	try {
@@ -24,6 +25,7 @@ export const load = (async ({ url, locals }) => {
 			perPage: teams.perPage
 		};
 	} catch (error) {
+		console.error(error);
 		return {
 			teams: [],
 			totalPages: 0,
