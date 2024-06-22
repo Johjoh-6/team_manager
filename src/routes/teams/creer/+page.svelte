@@ -70,6 +70,7 @@
 					class="textarea {$errors.description && 'input-error'}"
 					rows="4"
 					placeholder="Description fr l'équipe."
+					bind:value={$form.description}
 				/>
 				{#if $errors.description}
 					<p class="text-error-500">{$errors.description}</p>
