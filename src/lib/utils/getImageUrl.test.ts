@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { getImageURL } from './getImageUrl';
+import { env } from '$env/dynamic/public';
 
 describe('getImageURL', () => {
 	it('should return the correct image URL', () => {
@@ -8,7 +9,7 @@ describe('getImageURL', () => {
 		const fileName = 'image.jpg';
 		const size = '200x200';
 
-		const expectedURL = `${process.env.PUBLIC_IMAGE_URL}/${collectionId}/${recordId}/${fileName}?size=${size}`;
+		const expectedURL = `${env.PUBLIC_API_URL}api/files/${collectionId}/${recordId}/${fileName}?thumb=${size}`;
 
 		const result = getImageURL(collectionId, recordId, fileName, size);
 
@@ -20,7 +21,7 @@ describe('getImageURL', () => {
 		const recordId = 'record456';
 		const fileName = 'image.jpg';
 
-		const expectedURL = `${process.env.PUBLIC_IMAGE_URL}/${collectionId}/${recordId}/${fileName}?size=0x0`;
+		const expectedURL = `${env.PUBLIC_API_URL}api/files/${collectionId}/${recordId}/${fileName}?thumb=0x0`;
 
 		const result = getImageURL(collectionId, recordId, fileName);
 

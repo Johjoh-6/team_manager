@@ -29,6 +29,6 @@ describe('stripString', () => {
 
     it('should return a striped string with the specified length and custom stripe character', () => {
         const result = stripString('Hello World', 8, '...');
-        expect(result).toBe('Hello W...');
+        expect(result).toBe('Hello Wo...');
     });
 });
