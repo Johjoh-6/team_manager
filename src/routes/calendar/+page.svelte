@@ -55,7 +55,7 @@
 </svelte:head>
 
 <section class="content-grid flow">
-	<div class="flex p-4">
+	<div class="flex p-4 flex-col md:flex-row gap-4">
 		<h1 class="text-center text-xl flex-grow">Tous les évenements <strong>({data.totalItems})</strong></h1>
 		{#if data.isManager}
 			<a
