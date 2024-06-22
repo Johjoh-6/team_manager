@@ -13,4 +13,5 @@ export const eventSchema = z.object({
   location: z.string().optional(),
   note: z.string().optional(),
   type: z.string(),
+  team: z.string().optional(),
 });
