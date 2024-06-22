@@ -5,7 +5,6 @@ import { zod } from 'sveltekit-superforms/adapters';
 import { TeamSchema } from '$lib/models/schemaTeam';
 import { ClientResponseError, type RecordModel } from 'pocketbase';
 import { serialize } from 'object-to-formdata';
-import { serializeNonPOJOs } from '$lib/utils/serializeNonPojos';
 
 export const load = (async ({ parent, locals }) => {
 	const { team } = await parent();
