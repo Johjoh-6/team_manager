@@ -3,7 +3,6 @@ import PocketBase, { type AuthModel } from 'pocketbase';
 import type { Handle } from '@sveltejs/kit';
 import { env } from '$env/dynamic/public';
 import { serializeNonPOJOs } from '$lib/utils/serializeNonPojos';
-import type { AuthSystemFields, TypedPocketBase, UsersRecord } from '$lib/models/pocketbase-types';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	// event.locals.pb = new PocketBase(env.PUBLIC_API_URL) as TypedPocketBase;

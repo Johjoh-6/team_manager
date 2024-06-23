@@ -57,6 +57,5 @@ export const actions = {
 				message: "Quelque chose s'est mal passé lors de la connexion. Veuillez réessayer plus tard."
 			});
 		}
-		return { form };
 	},
 };
