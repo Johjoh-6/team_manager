@@ -1,9 +1,10 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-	import type { PaginationSettings } from '@skeletonlabs/skeleton';
-	import { Avatar, Paginator } from '@skeletonlabs/skeleton';
+	import type { ActionData, PageData } from './$types';
+	import type { PaginationSettings, ToastSettings } from '@skeletonlabs/skeleton';
+	import { Avatar, Paginator, getToastStore } from '@skeletonlabs/skeleton';
 
 	export let data: PageData;
+    export let form: ActionData;
 
 	const settings: PaginationSettings = {
 		page: data.currentPage,
@@ -22,6 +23,9 @@
 	let page = data.currentPage;
 	let perPage = data.perPage;
 	let search = '';
+
+    
+    const toastStore = getToastStore();
 
 	onMount(async () => {
 		search = '';
@@ -51,7 +55,25 @@
 		search = '';
 		goto(`/players?search=${search}`);
 	};
-    console.log(data.players);
+    
+    
+
+let t: ToastSettings;
+$: if (form?.deleted) {
+    t = {
+        message: "Évenement supprimé",
+        background: 'bg-green-500'
+    };
+    toastStore.trigger(t);	
+    goto('/players');
+} else if (form?.error) {
+    t = {
+        message: 'Erreur lors de la suppression',
+        background: 'bg-error-500'
+    };
+    toastStore.trigger(t);
+
+}
 </script>
 
 <svelte:head>
@@ -148,8 +170,9 @@
                         <p>Non renseigné</p>
                         {/if}
                         <div class="grid grid-cols-2 gap-2 text-center p-2 card variant-ghost-secondary">
-                            <p class="font-semibold text-primary-500">Handicap point</p>
-                            <p class="font-semibold text-primary-500">Handicap description</p>
+                            <h4 class="col-span-2 font-lg text-primary-500 font-semibold">Handicap</h4>
+                            <p class="text-primary-500">Point</p>
+                            <p class="text-primary-500">Description</p>
                             <p>{player.handy_point}</p>
                             {#if player.handy_comment}
                             <p>{player.handy_comment}</p>
@@ -162,6 +185,7 @@
                         {#if data.isManager}
                         <a href="/players/{player.id}/edit" class="btn font-bold variant-filled-secondary">Modifier</a>
                         <form method="POST" use:enhance>
+                            <input type="hidden" name="id" value="{player.id}" />
                             <button class="btn bg-error-500 text-white">Supprimer</button>
                         </form>
                         {/if}
