@@ -50,7 +50,6 @@ export const actions = {
         const { id } = params;
 		const form = await superValidate(request, zod(PlayerSchema));
 		
-		console.log('form', form);
 		if (!form.valid) {
 			return message(form, 'Champs manquant', {
 				status: 400
