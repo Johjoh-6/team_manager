@@ -6,9 +6,10 @@
 	import { Avatar } from '@skeletonlabs/skeleton';
 
 	export let data: PageData;
-	const team: RecordModel = data.team;
+	const team: RecordModel = data.teamId;
 
 	const managerName = `${team?.expand?.manager.last_name} ${team?.expand?.manager.first_name}`;
+	console.log(data.team);
 </script>
 
 <svelte:head>
@@ -78,4 +79,12 @@
 		</ul>
 		{/if}
 	</CardsBasic>
+	{#if !data.team}
+								<button
+									class="btn bg-primary-500 font-bold text-white hover:text-token hover:ring-primary-400-500-token hover:bg-transparent"
+									on:click={() => {
+										console.log('join team', team.id);
+									}}>Rejoindre</button
+								>
+							{/if}
 </section>
