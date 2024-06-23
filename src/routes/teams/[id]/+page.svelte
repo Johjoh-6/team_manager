@@ -7,9 +7,7 @@
 
 	export let data: PageData;
 	const team: RecordModel = data.teamId;
-
-	const managerName = `${team?.expand?.manager.last_name} ${team?.expand?.manager.first_name}`;
-	console.log(data.team);
+	const managerName = `${team?.expand?.manager?.last_name} ${team?.expand?.manager?.first_name}`;
 </script>
 
 <svelte:head>
@@ -44,41 +42,43 @@
 			<p class="font-semibold text-primary-500 text-center">Contact</p>
 			<p>{team.contact_info}</p>
 			<p class="font-semibold text-primary-500 text-center">Manager</p>
-			<p class="capitalize">{managerName !== '' ? managerName : 'Non renseigné'}</p>
+			<p class="capitalize text-center">{managerName !== '' ? managerName : 'Non renseigné'}</p>
 		</div>
 	</CardsBasic>
+	{#if team?.expand?.players}
 	<CardsBasic urlToGo="/players">
-		<h2 slot="header" class="text-primary-500 font-semibold text-center text-lg">Nombre de joueurs<span>({team?.expand?.players.length ?? 0})</span></h2>
-		{#if team?.expand?.players.length === 0}
-		<p class="text-center">Aucun joueur dans l'équipe</p>
+		<h2 slot="header" class="text-primary-500 font-semibold text-center text-lg">Nombre de joueurs<span>({team?.expand?.players?.length ?? 0})</span></h2>
+		{#if team?.expand?.players && team?.expand?.players?.length === 0}
+			<p class="text-center">Aucun joueur dans l'équipe</p>
 		{:else}
-		<ul>
-			{#each team?.expand?.players as player}
-				<li class="flex w-full flex-nowrap items-center justify-between gap-2">
-					<Avatar
-						src={player.picture != ''
-							? getImageURL(player.collectionId, player.id, player.picture, '24x24')
-							: '/avatar.jpg'}
-						fallback="/avatar.jpg"
-						alt="Photos du joueur"
-						class="avatar"
-					/>
-					<p class="p-2">
-						<strong class="capitalize">
-							{player.last_name ?? 'Non renseigné'}
-						</strong>
-						{' '}
-						{player.first_name ?? 'Non renseigné'}
-					</p>
-					<p>{player.expand.position.name}</p>
-					<p class="text-xl font-semibold">
-						#{player.player_number ?? '?'}
-					</p>
-				</li>
-			{/each}
-		</ul>
+			<ul>
+				{#each team?.expand?.players as player}
+					<li class="flex w-full flex-nowrap items-center justify-between gap-2">
+						<Avatar
+							src={player.picture != ''
+								? getImageURL(player.collectionId, player.id, player.picture, '24x24')
+								: '/avatar.jpg'}
+							fallback="/avatar.jpg"
+							alt="Photos du joueur"
+							class="avatar"
+						/>
+						<p class="p-2">
+							<strong class="capitalize">
+								{player.last_name ?? 'Non renseigné'}
+							</strong>
+							{' '}
+							{player.first_name ?? 'Non renseigné'}
+						</p>
+						<p>{player.expand.position.name}</p>
+						<p class="text-xl font-semibold">
+							#{player.player_number ?? '?'}
+						</p>
+					</li>
+				{/each}
+			</ul>
 		{/if}
 	</CardsBasic>
+	{/if}
 	{#if !data.team}
 								<button
 									class="btn bg-primary-500 font-bold text-white hover:text-token hover:ring-primary-400-500-token hover:bg-transparent"
