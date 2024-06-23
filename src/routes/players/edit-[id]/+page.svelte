@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SuperDebug, { superForm } from 'sveltekit-superforms';
+	import  { superForm } from 'sveltekit-superforms';
 	import type { PageData } from './$types';
 	import { getToastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { goto } from '$app/navigation';
@@ -41,7 +41,6 @@
   <svelte:head>
 	<title>Modifier le Joueur</title>
   </svelte:head>
-  <SuperDebug data={$form} />
   
   <section class="content-grid content-grid justify-center p-4">
 	<div
