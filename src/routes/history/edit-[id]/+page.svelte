@@ -19,7 +19,7 @@
 					background: 'bg-success-500',
 					timeout: 3000,
 					callback: () => {
-						goto('/players');
+						goto('/history');
 					}
 				};
 				toastStore.trigger(t);
@@ -96,7 +96,7 @@
 					<p class="text-error-500">{$errors.team_opponent_name}</p>
 				{/if}
 			</label>
-			<label class="label col-span-2" for="score">
+			<label class="label md:col-span-2" for="score">
 				<span>Score</span>
 				<input
 					class="input {$errors.score && 'input-error'}"
@@ -111,7 +111,7 @@
 					<p class="text-error-500">{$errors.score}</p>
 				{/if}
 			</label>
-			<label class="label col-span-2" for="score_opponent">
+			<label class="label md:col-span-2" for="score_opponent">
 				<span>Score adverse</span>
 				<input
 					class="input {$errors.score_opponent && 'input-error'}"
@@ -126,7 +126,7 @@
 					<p class="text-error-500">{$errors.score_opponent}</p>
 				{/if}
 			</label>
-			<label class="label md:col-span-2">
+			<label class="label md:md:col-span-2">
 				<span>Description </span><span class="text-token text-xs opacity-85"> (facultatif)</span>
 				<textarea
 					class="textarea {$errors.description && 'input-error'}"

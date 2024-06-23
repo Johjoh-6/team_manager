@@ -3,7 +3,6 @@ import type { PageServerLoad } from './$types';
 import { message, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import { ClientResponseError, type RecordModel } from 'pocketbase';
-import { serialize } from 'object-to-formdata';
 import isRole from '$lib/utils/isRole';
 import { Roles } from '$lib/enum/rolesEnum';
 import { matchHistorySchema } from '$lib/models/schemaMatchHistory';
@@ -59,8 +58,7 @@ export const actions = {
 		}
 
 		try {
-			// serialize remove the undefined values and clean the object
-			await locals.pb.collection('players').update(id, serialize(form.data));
+			await locals.pb.collection('match_history').update(id, form.data);
 		} catch (err) {
 			console.error('Error: ', err);
 			if (err instanceof ClientResponseError) {

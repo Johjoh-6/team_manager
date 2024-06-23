@@ -107,7 +107,7 @@
 					<p class="text-error-500">{$errors.position}</p>
 				{/if}
 			</label>
-            <label class="label col-span-2" for="player_number">
+            <label class="label md:col-span-2" for="player_number">
 				<span>Numéro du joueur</span>
 				<input
 					class="input {$errors.player_number && 'input-error'}"
@@ -122,7 +122,7 @@
 					<p class="text-error-500">{$errors.player_number}</p>
 				{/if}
 			</label>
-            <label class="label md:col-span-2">
+            <label class="label md:md:col-span-2">
 				<span>Biographie </span><span class="text-token text-xs opacity-85"> (facultatif)</span>
 				<textarea
 					class="textarea {$errors.biography && 'input-error'}"
@@ -136,7 +136,7 @@
 					<p class="text-error-500">{$errors.biography}</p>
 				{/if}
 			</label>
-            <label class="label col-span-2" for="handy_point">
+            <label class="label md:col-span-2" for="handy_point">
 				<span>handy_point</span>
 				<input
 					class="input {$errors.handy_point && 'input-error'}"
@@ -151,7 +151,7 @@
 					<p class="text-error-500">{$errors.handy_point}</p>
 				{/if}
 			</label>
-            <label class="label md:col-span-2">
+            <label class="label md:md:col-span-2">
 				<span>Commentaire sur l'handicap </span><span class="text-token text-xs opacity-85"> (facultatif)</span>
 				<textarea
 					class="textarea {$errors.handy_comment && 'input-error'}"
@@ -165,7 +165,7 @@
 					<p class="text-error-500">{$errors.handy_comment}</p>
 				{/if}
 			</label>
-			<label class="label col-span-2" for="height">
+			<label class="label md:col-span-2" for="height">
 				<span>Taille</span>
 				<input
 					class="input {$errors.height && 'input-error'}"
@@ -180,7 +180,7 @@
 					<p class="text-error-500">{$errors.height}</p>
 				{/if}
 			</label>
-			<label class="label col-span-2" for="weight">
+			<label class="label md:col-span-2" for="weight">
 				<span>Poids</span>
 				<input
 					class="input {$errors.weight && 'input-error'}"
