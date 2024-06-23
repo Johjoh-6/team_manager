@@ -94,12 +94,12 @@
 					<p class="text-error-500">{$errors.location}</p>
 				{/if}
 			</label>
-			<label class="label" for="date-start">
+			<label class="label" for="date_start">
 				<span>Date de début</span>
 				<input
 				  class="input {$errors.date_start && 'input-error'}"
 				  type="datetime-local"
-				  id="date-start"
+				  id="date_start"
 				  name="date_start"
 				  bind:value={$form.date_start}
 				/>
@@ -108,12 +108,12 @@
 				{/if}
 			  </label>
 			  
-			  <label class="label" for="date-end">
+			  <label class="label" for="date_end">
 				<span>Date de fin</span>
 				<input
 				  class="input {$errors.date_end && 'input-error'}"
 				  type="datetime-local"
-				  id="date-end"
+				  id="date_end"
 				  name="date_end"
 				  bind:value={$form.date_end}
 				/>
