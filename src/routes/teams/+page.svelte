@@ -31,7 +31,7 @@
 
 	const onPageChange = async (e: CustomEvent): Promise<void> => {
 		page = e.detail;
-		goto(`/teams?page=${page}&perPage=${perPage}`);
+		goto(`/teams?page=${page+1}&perPage=${perPage}`);
 	};
 
 	const onAmountChange = async (e: CustomEvent): Promise<void> => {
@@ -117,14 +117,7 @@
 							<p class="capitalize">{team.sport_name ?? 'Non renseingé'}</p>
 							<p>Nombre de joueurs : <strong>{team.player_nb}</strong></p>
 							<p>Manager <span class="uppercase">{team.manager_last}</span> {team.manager_first}</p>
-							{#if !data.team}
-								<button
-									class="btn bg-primary-500 font-bold text-white hover:text-token hover:ring-primary-400-500-token hover:bg-transparent"
-									on:click={() => {
-										console.log('join team', team.id);
-									}}>Rejoindre</button
-								>
-							{/if}
+							<a href="/teams/{team.id}" class="btn variant-ghost-primary">Voir l'équipe</a>
 						</div>
 					</svelte:fragment>
 				</AccordionItem>

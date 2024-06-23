@@ -26,7 +26,7 @@
 
 	const onPageChange = async (e: CustomEvent): Promise<void> => {
 		page = e.detail;
-		goto(`/calendar?page=${page}&perPage=${perPage}`);
+		goto(`/calendar?page=${page+1}&perPage=${perPage}`);
 	};
 
 	const onAmountChange = async (e: CustomEvent): Promise<void> => {

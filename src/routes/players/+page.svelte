@@ -33,7 +33,7 @@
 
 	const onPageChange = async (e: CustomEvent): Promise<void> => {
 		page = e.detail;
-		goto(`/players?page=${page}&perPage=${perPage}`);
+		goto(`/players?page=${page+1}&perPage=${perPage}`);
 	};
 
 	const onAmountChange = async (e: CustomEvent): Promise<void> => {
