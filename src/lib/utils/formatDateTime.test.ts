@@ -13,4 +13,11 @@ describe('formatDateTime', () => {
         const formattedDateTime = formatDateTime(date);
         expect(formattedDateTime).toBe('2021-12-31T23:00');
     });
+
+    it('should format a date string correctly', () => {
+        const date = "2022-01-01T12:34:56";
+        const formattedDateTime = formatDateTime(date, false);
+        expect(formattedDateTime).toBe('2022-01-01');
+    });
+
 });
