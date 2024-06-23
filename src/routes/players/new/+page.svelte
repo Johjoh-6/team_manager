@@ -202,6 +202,7 @@
 				  type="date"
 				  id="bod"
 				  name="bod"
+                  min="1900-01-01"
 				  bind:value={$form.bod}
 				/>
 				{#if $errors.bod}
