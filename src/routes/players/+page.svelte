@@ -183,7 +183,7 @@ $: if (form?.deleted) {
                     </svelte:fragment>
                     <svelte:fragment slot="footer">
                         {#if data.isManager}
-                        <a href="/players/{player.id}/edit" class="btn font-bold variant-filled-secondary">Modifier</a>
+                        <a href="/players/edit-{player.id}" class="btn font-bold variant-filled-secondary">Modifier</a>
                         <form method="POST" use:enhance>
                             <input type="hidden" name="id" value="{player.id}" />
                             <button class="btn bg-error-500 text-white">Supprimer</button>
