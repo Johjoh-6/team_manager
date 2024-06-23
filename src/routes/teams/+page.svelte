@@ -45,7 +45,7 @@
 	};
 	const handleKeySearch = async (e: KeyboardEvent): Promise<void> => {
 		if (e.key === 'Enter') {
-			goto(`/calendar?search=${search}`);
+			goto(`/teams?search=${search}`);
 		}
 	};
 	const handleReset = async (): Promise<void> => {
