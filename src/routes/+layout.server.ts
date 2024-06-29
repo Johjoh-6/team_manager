@@ -1,5 +1,4 @@
 import type { LayoutServerLoad } from './$types';
-import type { RolesRecord } from '$lib/models/pocketbase-types';
 import type { RecordModel } from 'pocketbase';
 import isRole from '$lib/utils/isRole';
 import { Roles } from '$lib/enum/rolesEnum';
@@ -15,7 +14,7 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 
 		const user = locals.user;
 		const userId: string = user.id;
-		const roles: RolesRecord[] | null = user.expand.role;
+		const roles: RecordModel[] | null = user.expand.role;
 		if (!roles) {
 			throw new Error();
 		}
