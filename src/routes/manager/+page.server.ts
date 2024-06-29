@@ -15,14 +15,13 @@ export const load = (async ({ locals, url }) => {
         const search = url.searchParams.get('search') || '';
 
         const option: Record<string, string> = {
-           expand: 'user,player',
-            fields: '*,expand.user.last_name,expand.player.last_name,expand.player.first_name,expand.user.first_name'
+           expand: 'playerID',
+            fields: '*,expand.playerID.last_name,expand.playerID.first_name'
         };
         if (search) {
-            option.filter = `expand.player.first_name~"${search}" || expand.player.last_name~"${search}"`;
+            option.filter = `playerID.first_name~"${search}" || playerID.last_name~"${search}"`;
         }
         const claims =  await locals.pb.collection('claim_requests').getList(page, perPage, option);
-
         return {
             claims: claims.items,
             totalPages: claims.totalPages,
