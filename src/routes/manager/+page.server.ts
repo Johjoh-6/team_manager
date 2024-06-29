@@ -70,6 +70,20 @@ export const actions = {
 			const update = await locals.pb.collection('claim_requests').update(idClaim, {
                 status: status
             });
+            console.log('update', update);
+            if(update.status === 'approved'){
+                const player = await locals.pb.collection('players').update(update.playerID, {
+                 claimed: true,
+                 user_link: update.userID
+                });
+                if(player){
+                    return { update : true}
+                }
+                return {
+                    error: true
+                }
+            }
+
             if(update){
 				return { update : true}
 			}
