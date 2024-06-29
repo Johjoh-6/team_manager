@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { ActionData, PageData } from './$types';
 	import type { PaginationSettings, ToastSettings } from '@skeletonlabs/skeleton';
-	import { Avatar, Paginator, getToastStore } from '@skeletonlabs/skeleton';
+	import {  Paginator, getToastStore } from '@skeletonlabs/skeleton';
 
 	export let data: PageData;
     export let form: ActionData;
@@ -17,7 +17,6 @@
 	import { onMount } from 'svelte';
 	import dateFormatFr from '$lib/utils/dateFormatFr';
 	import CardsBasic from '$lib/components/CardsBasic.svelte';
-	import { getImageURL } from '$lib/utils/getImageUrl';
 	import { enhance } from '$app/forms';
 
 	let page = data.currentPage;
@@ -120,18 +119,18 @@ $: if (form?.update) {
                     <svelte:fragment>
                         <div class="flex gap-2">
                             <p class="font-semibold text-primary-500 text-center">Nom du joueur</p>
-                            {#if claim.expand?.player.last_name}
-                            <p class="capitalize">{claim.expand?.player.last_name} {claim.expand?.player.first_name}</p>
+                            {#if claim.expand?.playerID}
+                            <p class="capitalize">{claim.expand?.playerID.last_name} {claim.expand?.playerID.first_name}</p>
                             {:else}
                             <p>Non renseigné</p>
                             {/if}
                         </div>
-                        <div class="flex gap-2">
-                            <p class="font-semibold text-primary-500 text-center">Nom de l'utilisateur</p>
-                            {#if claim.expand?.user.last_name}
-                            <p class="capitalize">{claim.expand?.user.last_name} {claim.expand?.user.first_name}</p>
+                        <div class="flex gap-2 flex-col">
+                            <p class="font-semibold text-primary-500">Message</p>
+                            {#if claim.message && claim.message.length != ''}
+                            <p>{claim.message}</p>
                             {:else}
-                            <p>Non renseigné</p>
+                            <p>Pas de contenue</p>
                             {/if}
                         </div>
                         <div class="flex gap-2">
