@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { superForm } from 'sveltekit-superforms';
+	import  SuperDebug, { superForm } from 'sveltekit-superforms';
 	import type { PageData } from './$types';
 	import { getToastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { goto } from '$app/navigation';
@@ -15,7 +15,7 @@
 		onResult({ result }) {
 			if (result.status === 200) {
 				const t: ToastSettings = {
-					message: 'Modification éffectuée avec succès',
+					message: 'Ajout éffectuée avec succès',
 					background: 'bg-success-500',
 					timeout: 3000,
 					callback: () => {
@@ -39,17 +39,19 @@
 </script>
 
 <svelte:head>
-	<title>Modifier l'historique du match</title>
+	<title>Crée un historique du match</title>
 </svelte:head>
 
+<SuperDebug data={$form} />
 <section class="content-grid content-grid justify-center p-4">
 	<div
 		class="bg-surface-300-600-token flex w-full flex-col gap-4 p-8 shadow-md rounded-container-token"
 	>
 		<h1 class="text-center text-3xl font-semibold text-primary-500">
-			Modifier l'historique du match
+			Crée un historique du match
 		</h1>
 		<form class="form grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4" use:enhance method="POST">
+            <input type="text" hidden name="team" value={data.team?.id}>
 			<label class="label" for="name">
 				<span>Nom de l'évenement</span>
 				<input
@@ -153,7 +155,7 @@
 					<p class="text-error-500">{$errors.match_date}</p>
 				{/if}
 			</label>
-			<button type="submit" class="variant-filled-primary btn mt-2 md:col-span-2">Modifier</button>
+			<button type="submit" class="variant-filled-primary btn mt-2 md:col-span-2">Crée</button>
 		</form>
 	</div>
 </section>

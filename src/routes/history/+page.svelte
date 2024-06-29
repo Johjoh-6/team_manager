@@ -63,6 +63,14 @@
 
 <section class="content-grid flow">
 	<h1 class="p-2 text-center text-xl">Les résultats des matchs</h1>
+	{#if data.isManager}
+	<a
+		href="/history/new"
+		class="btn font-bold variant-filled-primary"
+	>
+		Ajouter un historique
+	</a>
+{/if}
 
 	<p>Trouver un réseultat de match</p>
 	<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
@@ -100,18 +108,18 @@
 						<div class="flex gap-2 p-2 items-center">
 						<Avatar
 							width="w-12 md:w-16"
-							src={history.expand.team.logo != ''
-								? getImageURL(history.expand.team.collectionId, history.expand.team.id, history.expand.team.logo, '24x24')
+							src={history.expand?.team.logo != ''
+								? getImageURL(history.expand?.team.collectionId, history.expand?.team.id, history.expand?.team.logo, '24x24')
 								: ''}
-							alt={history.expand.team.name}
+							alt={history.expand?.team.name}
 							/>
 							
 							<span class="text-secondary-500 font-semibold text-xl"> VS </span>
-							{#if history.expand.team_opponent}
+							{#if history.expand?.team_opponent}
 							<Avatar
 							width="w-12 md:w-16"
-							src={history.expand.team_opponent.logo != ''
-									? getImageURL(history.expand.team.collectionId, history.expand.team_opponent.id, history.expand.team_opponent.logo, '24x24')
+							src={history.expand?.team_opponent.logo != ''
+									? getImageURL(history.expand?.team.collectionId, history.expand?.team_opponent.id, history.expand?.team_opponent.logo, '24x24')
 									: ''}
 								alt={history.expand.team_opponent.name}
 								/>
@@ -128,13 +136,13 @@
 					<svelte:fragment slot="content">
 						<div class="flex flex-col gap-1 text-center">
 							<p>{history.score} <strong>/</strong> {history.score_opponent}</p>
-							<p>{history.expand.team.name} <strong>/</strong> {history.expand.team_opponent ? history.expand.team_opponent.name : history.expand.team_opponent_name}</p>
+							<p>{history.expand?.team.name} <strong>/</strong> {history.expand?.team_opponent ? history.expand?.team_opponent.name : history.expand?.team_opponent_name}</p>
 							<p>{dateFormatFr(history.match_date)}</p>
-							<p>{history.expand.team.sport.name}</p>
+							<p>{history.expand?.team.sport.name}</p>
 							{#if history.description}
 							<p>{history.description}</p>
 							{/if}
-							{#if history.team === data.team.id && data.isManager}
+							{#if history.team === data.team?.id && data.isManager}
 								<a href="/history/edit-{history.id}" class="btn variant-ghost-primary">Modifier le match</a>
 							{/if}
 						</div>
