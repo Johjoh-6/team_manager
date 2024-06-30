@@ -1,14 +1,13 @@
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import isRole from '$lib/utils/isRole';
 import { Roles } from '$lib/enum/rolesEnum';
 
 export const load = (async ({locals, url}) => {
+	if (!locals.user) {
+		redirect(303, '/login');
+	}
     try{
-        if(!locals.user){
-            throw new Error();
-        }
-        
         const page = Number(url.searchParams.get('page')) || 1;
 		const perPage = Number(url.searchParams.get('perPage')) || 10;
 		const search = url.searchParams.get('search') || '';
