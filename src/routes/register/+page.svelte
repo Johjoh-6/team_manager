@@ -40,7 +40,7 @@
 	<title>S'enregistrer Handy Team</title>
 </svelte:head>
 
-<section id="register-form" class="content-grid flex h-screen flex-col items-center justify-center">
+<section id="register-form" class="content-grid h-full place-items-center">
 	<div class="bg-surface-300-600-token w-full max-w-md p-8 shadow-md rounded-container-token">
 		<h1 class="mb-8 text-center text-4xl font-bold">S'enregistrer</h1>
 		<form class="space-y-6" use:enhance action="?/register" method="POST">
