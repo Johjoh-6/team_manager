@@ -4,6 +4,7 @@
 	import { getImageURL } from '$lib/utils/getImageUrl';
 	import CardsBasic from '$lib/components/CardsBasic.svelte';
 	import { Avatar } from '@skeletonlabs/skeleton';
+	import { goto } from '$app/navigation';
 
 	export let data: PageData;
 	const team: RecordModel = data.teamId;
@@ -87,7 +88,7 @@
 		<button
 			class="btn bg-primary-500 font-bold text-white hover:text-token hover:ring-primary-400-500-token hover:bg-transparent"
 			on:click={() => {
-				console.log('join team', team.id);
+				goto(`/teams/${team.id}/join`)
 			}}>Rejoindre</button
 		>
 	{/if}
