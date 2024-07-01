@@ -182,8 +182,10 @@ $: if (form?.deleted) {
                         </div>
                     </svelte:fragment>
                     <svelte:fragment slot="footer">
-                        {#if data.isManager}
+						{#if data.isManager || player.user_link == data.userId}
                         <a href="/players/edit-{player.id}" class="btn font-bold variant-filled-secondary">Modifier</a>
+						{/if}
+                        {#if data.isManager}
                         <form method="POST" use:enhance>
                             <input type="hidden" name="id" value="{player.id}" />
                             <button class="btn bg-error-500 text-white">Supprimer</button>

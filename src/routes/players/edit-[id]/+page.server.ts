@@ -12,12 +12,14 @@ import formatDateTime from '$lib/utils/formatDateTime';
 export const load = (async ({ locals, params }) => {
     try {
         const { id } = params;
-		if (!isRole(Roles.MANAGER, locals.user?.expand.role)) {
-			throw new Error('Forbidden');
+		if(!locals.user){
+			redirect(303, '/login');
 		}
-
         const player = await locals.pb.collection('players').getOne(id)
 
+		if ((!isRole(Roles.MANAGER, locals.user?.expand.role) || !isRole(Roles.PLAYER, locals.user?.expand.role)) && player.user_link !== locals.user.id) {
+			throw new Error('Forbidden');
+		}
         const getPositionList = async (): Promise<RecordModel[]> => {
             try {
                 const list = await locals.pb.collection('positions').getFullList();
