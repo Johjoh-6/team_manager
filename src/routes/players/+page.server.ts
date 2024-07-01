@@ -2,6 +2,7 @@ import { error, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import isRole from '$lib/utils/isRole';
 import { Roles } from '$lib/enum/rolesEnum';
+import type { RecordListOptions } from 'pocketbase';
 
 export const load = (async ({locals, url}) => {
 	if (!locals.user) {
@@ -12,16 +13,17 @@ export const load = (async ({locals, url}) => {
 		const perPage = Number(url.searchParams.get('perPage')) || 10;
 		const search = url.searchParams.get('search') || '';
 
-		const option: Record<string, string> = {
+		const option: RecordListOptions = {
             expand: 'position',
-            fields: '*,expand.position.name'
+            fields: '*,expand.position.name',
+			requestKey: null 
         };
 		if (search) {
 			option.filter = `first_name~"${search}" || last_name~"${search}" || player_number~"${search}"`;
 		}
 		const players = await locals.pb.collection('players').getList(page, perPage, option);
-
 		return {
+			userId: locals.user.id,
 			players: players.items,
 			totalPages: players.totalPages,
 			currentPage: players.page,
@@ -31,6 +33,7 @@ export const load = (async ({locals, url}) => {
     } catch (err) {
         console.error(err);
         return {
+			userId: locals.user.id,
 			players: [],
 			totalPages: 0,
 			currentPage: 0,
