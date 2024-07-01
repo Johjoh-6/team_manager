@@ -12,7 +12,10 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
-		"test:unit": "vitest"
+		"test:unit": "vitest",
+		"docker": "docker build -t map-front .",
+		"docker:linux": "docker build -t map-front . --platform=linux/amd64",
+		"docker:tar": "docker save map-front > image-linux.tar"
 	},
 	"devDependencies": {
 		"@floating-ui/dom": "1.6.5",
