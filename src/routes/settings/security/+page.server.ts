@@ -29,7 +29,7 @@ export const actions = {
 		}
 
 		try {
-			await locals.pb.collection('users').update(locals.user.id, form);
+			await locals.pb.collection('users').update(locals.user.id, form.data);
 			locals.pb.authStore.clear();
 		} catch (err) {
 			console.log('Error: ', err);
@@ -42,7 +42,6 @@ export const actions = {
 				message: "Quelque chose s'est mal passé lors de la connexion. Veuillez réessayer plus tard."
 			});
 		}
-
-		redirect(303, '/login');
+		return message(form, '');
 	}
 };
