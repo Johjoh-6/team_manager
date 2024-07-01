@@ -9,12 +9,19 @@ export const load = (async ({ locals }) => {
 	if (!locals.pb.authStore.isValid) {
 		redirect(303, '/login');
 	}
-	const formEmail = await superValidate(zod(UserEmailSchema));
-	const formUsername = await superValidate(zod(UserEmailSchema));
-	return {
-		formEmail,
-		formUsername
-	};
+	try{
+		const user = locals.user;
+		const formEmail = await superValidate(user, zod(UserEmailSchema));
+		const formUsername = await superValidate(user, zod(UserUsernameSchema));
+		return {
+			formEmail,
+			formUsername
+		};
+		
+	
+	} catch(err){
+		redirect(303, '/login');
+	}
 }) satisfies PageServerLoad;
 
 export const actions = {
@@ -32,7 +39,7 @@ export const actions = {
 			console.error('Error: ', err);
 			if (err instanceof ClientResponseError) {
 				if (err.status === 400) {
-					return message(formEmail, 'Email incorrects', {
+					return message(formEmail, 'Email incorrects ou email déjà utilisé', {
 						status: 400
 					});
 				}
