@@ -114,8 +114,17 @@
 							{:else}
 								<p>Pas de description</p>
 							{/if}
-							<p class="capitalize">{team.sport_name ?? 'Non renseingé'}</p>
-							<p>Nombre de joueurs : <strong>{team.player_nb}</strong></p>
+							{#if team.location}
+								<p class="capitalize">{team.location}</p>
+							{:else}
+								<p>Localisation non renseignée</p>
+							{/if}
+							{#if team.sport_name}
+								<p class="capitalize">{team.sport_name}</p>
+							{:else}
+								<p>Sport non renseigné</p>
+							{/if}
+							<p>Nombre de joueurs : <strong>{team.players.length ?? 0}</strong></p>
 							<p>Manager <span class="uppercase">{team.manager_last}</span> {team.manager_first}</p>
 							<a href="/teams/{team.id}" class="btn variant-ghost-primary">Voir l'équipe</a>
 						</div>
