@@ -22,6 +22,7 @@
 			class={classInput}
 			type={showPassword ? 'text' : 'password'}
 			{name}
+			id={name}
 			{placeholder}
 			{value}
 			aria-invalid={error ? 'true' : undefined}
