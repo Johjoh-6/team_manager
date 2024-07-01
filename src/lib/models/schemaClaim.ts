@@ -6,5 +6,6 @@ export const claimSchema = z.object({
     teamID: z.string().optional(),
     userID: z.string().optional(),
     playerID: z.string().optional(),
-    status: z.enum(['pending', 'approved', 'rejected'])
+    status: z.enum(['pending', 'approved', 'rejected']),
+    message: z.string().optional()
 });
