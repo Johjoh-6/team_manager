@@ -1,38 +1,40 @@
-# create-svelte
+# Team handy
+Sport Team manager web app for person with disability. 
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+## Description
+Team Handy provide a team manager with some features to help manage a sport team. The app is designed for person with disability. The app is developed with the following technologies:
+- Frontend: Svelte with Sveltekit
+- Backend: Go (Pocketbase extension)
+- Database: SQLlite (Pocketbase)
 
-## Creating a project
+## Features
+- Create a team
+- Add players to the team
+- Remove players from the team
+- Update player information
+- View player information
+- View team information
+- Create an event
+- Update event information
+- View event information
+- Create an match history
+- Update match history information
+- View match history information
 
-If you're seeing this, you've probably already done this step. Congrats!
-
+## Installation
+1. Clone the repository
+2. Install the dependencies
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+pnpm install
+```
+3. Run the app
+```bash
+pnpm dev
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
+Don't forget to create the .env file with the following content:
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+cp .env.example .env
 ```
+And fill the .env file with the correct values.
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
