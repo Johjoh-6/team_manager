@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms/client';
-	import { goto } from '$app/navigation';
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types';
   
