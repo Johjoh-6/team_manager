@@ -86,12 +86,12 @@
 			</div>
 			<div>
 				<Password
-					name="passwordConfirmation"
+					name="passwordConfirm"
 					textLabel="Confirmer le mot de passe"
 					classLabel="block text-sm font-medium  ml-2"
 					classInput="mt-1 block w-full border border-gray-300 rounded-token shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-					bind:value={$form.passwordConfirmation}
-					error={$errors.passwordConfirmation}
+					bind:value={$form.passwordConfirm}
+					error={$errors.passwordConfirm}
 				/>
 			</div>
 			<div class="flex w-full flex-nowrap justify-between gap-2">

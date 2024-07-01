@@ -24,11 +24,11 @@ export const actions = {
 		}
 		// by default the role is set to 'user' and evolve
 		try {
-			
+
 			await locals.pb.collection('users').create({
 				email: form.data.email,
 				password: form.data.password,
-				passwordConfirm: form.data.passwordConfirmation,
+				passwordConfirm: form.data.passwordConfirm,
 				username: form.data.username
 			});
 			await locals.pb.collection('users').requestVerification(form.data.email);
