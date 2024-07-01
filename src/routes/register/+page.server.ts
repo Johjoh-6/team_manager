@@ -17,7 +17,6 @@ export const load = (async ({ locals }) => {
 export const actions = {
 	register: async ({ request, locals }) => {
 		const form = await superValidate(request, zod(UserRegisterSchema));
-		console.log('form', form);
 		if (!form.valid) {
 			return message(form, 'Champs manquant', {
 				status: 400
@@ -25,6 +24,7 @@ export const actions = {
 		}
 		// by default the role is set to 'user' and evolve
 		try {
+			
 			await locals.pb.collection('users').create({
 				email: form.data.email,
 				password: form.data.password,
@@ -32,7 +32,6 @@ export const actions = {
 				username: form.data.username
 			});
 			await locals.pb.collection('users').requestVerification(form.data.email);
-			console.log('User registered');
 		} catch (err) {
 			console.error('Error: ', err);
 			if (err instanceof ClientResponseError) {
@@ -44,7 +43,6 @@ export const actions = {
 				message: 'Something went wrong registering'
 			});
 		}
-		console.log('form', form);
-		return form;
+		return message(form, '');
 	}
 };
