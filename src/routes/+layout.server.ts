@@ -31,7 +31,7 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 							expand: 'sport,manager'
 						});
 					case isPlayer:
-						return await locals.pb.collection('teams').getFirstListItem(`players?="${userId}"`, {
+						return await locals.pb.collection('teams').getFirstListItem(`players.user_link?="${userId}"`, {
 							expand: 'sport,manager',
 							fields: '*,expand.manager.last_name,expand.manager.first_name,expand.sport.name'
 						});
@@ -41,6 +41,7 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 						return null;
 				}
 			} catch (error) {
+				console.log('error', error);
 				return null;
 			}
 		};
