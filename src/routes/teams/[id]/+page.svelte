@@ -49,14 +49,14 @@
 		</div>
 	</CardsBasic>
 	{#if team?.expand?.players}
-		<CardsBasic urlToGo="/players">
+		<CardsBasic >
 			<h2 slot="header" class="text-center text-lg font-semibold text-primary-500">
 				Nombre de joueurs<span>({team?.expand?.players?.length ?? 0})</span>
 			</h2>
 			{#if team?.expand?.players && team?.expand?.players?.length === 0}
 				<p class="text-center">Aucun joueur dans l'équipe</p>
 			{:else}
-				<ul>
+				<ul class="flex flex-col gap-2">
 					{#each team?.expand?.players as player}
 						<li class="flex w-full flex-nowrap items-center justify-between gap-2">
 							<Avatar
@@ -74,7 +74,11 @@
 								{' '}
 								{player.first_name ?? 'Non renseigné'}
 							</p>
-							<p>{player.expand.position.name}</p>
+							{#if player.expand?.position}
+								<p>{player.expand?.position?.name}</p>
+							{:else}
+								<p>Position non renseignée</p>
+							{/if}
 							<p class="text-xl font-semibold">
 								#{player.player_number ?? '?'}
 							</p>
@@ -86,7 +90,7 @@
 	{/if}
 	{#if !data.team}
 		<button
-			class="btn bg-primary-500 font-bold text-white hover:text-token hover:ring-primary-400-500-token hover:bg-transparent"
+			class="btn variant-filled-primary"
 			on:click={() => {
 				goto(`/teams/${team.id}/join`)
 			}}>Rejoindre</button
