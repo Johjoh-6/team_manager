@@ -10,14 +10,14 @@
     const toastStore = getToastStore();
 
     let t: ToastSettings;
-$: if (form?.success) {
+$: if (form && form?.success) {
     t = {
         message: "Joueur réclamé avec succès",
         background: 'bg-green-500'
     };
     toastStore.trigger(t);	
     goto('/teams');
-} else if (form?.error) {
+} else if (form && form?.error) {
     t = {
         message: 'Erreur lors de la réclamation du joueur',
         background: 'bg-error-500'
@@ -53,7 +53,7 @@ $: if (form?.success) {
 					{#each data.teamData?.expand.players as player}
 						{#if player.claimed && player.claimed === true}
 							<label class="flex items-center space-x-2">
-								<input class="radio" type="radio" name="idPlayer" value={player.id} disabled />
+								<input class="radio" type="radio" name="playerID" value={player.id} disabled />
 								<p class="text-primary-500">Déjà réclamer</p>
 								<p>{player.last_name} {player.first_name}</p>
 								<span>#{player.player_number}</span>
@@ -63,7 +63,7 @@ $: if (form?.success) {
 							</label>
 						{:else}
 							<label class="flex items-center space-x-2">
-								<input class="radio" type="radio" name="idPlayer" value={player.id} />
+								<input class="radio" type="radio" name="playerID" value={player.id} />
 								<p>{player.last_name} {player.first_name}</p>
 								<span>#{player.player_number}</span>
 								{#if player.expand && player.expand.position}
@@ -74,7 +74,7 @@ $: if (form?.success) {
 					{/each}
 
 					<label class="flex items-center space-x-2">
-						<input class="radio" type="radio" name="idPlayer" value="" />
+						<input class="radio" type="radio" name="playerID" value="" />
 						<p>Pas dans la liste</p>
 					</label>
 				{/if}
