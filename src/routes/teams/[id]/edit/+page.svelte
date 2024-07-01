@@ -48,11 +48,14 @@
 	<div
 		class="bg-surface-300-600-token flex w-full flex-col gap-4 p-8 shadow-md rounded-container-token"
 	>
-	<div class="flex flex-col gap-2 items-center">
-
-		<h1 class="text-3xl font-semibold text-primary-500 text-center">Modifier son équipe</h1>
-		<img src={$form.logo && getImageURL(data.collectionId, data.recordId , $form.logo, '100x100')} alt="Logo de l'équipe" class="w-30 h-30 rounded-full" />
-	</div>
+		<div class="flex flex-col items-center gap-2">
+			<h1 class="text-center text-3xl font-semibold text-primary-500">Modifier son équipe</h1>
+			<img
+				src={$form.logo && getImageURL(data.collectionId, data.recordId, $form.logo, '100x100')}
+				alt="Logo de l'équipe"
+				class="w-30 h-30 rounded-full"
+			/>
+		</div>
 		<form
 			class="form grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4"
 			use:enhance

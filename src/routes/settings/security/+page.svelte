@@ -61,7 +61,7 @@
 			error={$errors.passwordConfirm}
 			name="passwordConfirm"
 		/>
-		<a href="/reset-password" class="text-primary-500 hover:cursor-point hover:underline">
+		<a href="/reset-password" class="hover:cursor-point text-primary-500 hover:underline">
 			Mots de passe oublié</a
 		>
 		<button class="btn bg-primary-500 text-white" type="submit"

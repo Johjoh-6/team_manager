@@ -31,13 +31,17 @@ export const load = (async ({ params, locals }) => {
 				return [];
 			}
 		};
-		return { form, sportList: await getListSport(), collectionId: team.collectionId, recordId: team.id};
+		return {
+			form,
+			sportList: await getListSport(),
+			collectionId: team.collectionId,
+			recordId: team.id
+		};
 	} catch (error) {
 		console.error(error);
 		redirect(303, '/teams');
 	}
 }) satisfies PageServerLoad;
-
 
 export const actions = {
 	default: async ({ request, locals, params }) => {

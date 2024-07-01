@@ -1,6 +1,13 @@
 <script lang="ts">
 	import '../app.postcss';
-	import { AppShell, initializeStores, Modal, Toast, Drawer, LightSwitch } from '@skeletonlabs/skeleton';
+	import {
+		AppShell,
+		initializeStores,
+		Modal,
+		Toast,
+		Drawer,
+		LightSwitch
+	} from '@skeletonlabs/skeleton';
 
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
@@ -50,7 +57,7 @@
 	<svelte:fragment slot="sidebarLeft">
 		<Navigation />
 		<div class="p-4">
-			<LightSwitch  />
+			<LightSwitch />
 		</div>
 		{#if data.isConnected}
 			<!-- deconection button -->
@@ -79,9 +86,8 @@
 	<!-- (footer) -->
 </AppShell>
 
-
 <style lang="postcss">
-	.head-drawer{
+	.head-drawer {
 		@apply flex items-center justify-between p-4;
 	}
 </style>

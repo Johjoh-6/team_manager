@@ -82,8 +82,10 @@
 					<p class="text-error-500">{$errors.team_opponent}</p>
 				{/if}
 			</label>
-            <label class="label" for="team_opponent_name">
-				<span>Nom de l'équipe adverse</span><span class="text-token text-xs opacity-85"> (Si non trouver dans la liste)</span>
+			<label class="label" for="team_opponent_name">
+				<span>Nom de l'équipe adverse</span><span class="text-token text-xs opacity-85">
+					(Si non trouver dans la liste)</span
+				>
 				<input
 					class="input {$errors.team_opponent_name && 'input-error'}"
 					type="text"

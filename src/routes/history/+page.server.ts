@@ -1,8 +1,8 @@
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
-export const load = (async ({locals, url}) => {
-    if (!locals.user) {
+export const load = (async ({ locals, url }) => {
+	if (!locals.user) {
 		redirect(303, '/login');
 	}
 
@@ -12,9 +12,9 @@ export const load = (async ({locals, url}) => {
 		const search = url.searchParams.get('search') || '';
 
 		const option: Record<string, string> = {
-            expand: 'team_opponent,team',
-            // fields: '*,expand.team.name,expand.team_opponent.name,expand.team.logo,expand.team_opponent.logo,expand.team.sport.name,expand.team.collectionId,expand.team.id,expand.team_opponent.id'
-        };
+			expand: 'team_opponent,team'
+			// fields: '*,expand.team.name,expand.team_opponent.name,expand.team.logo,expand.team_opponent.logo,expand.team.sport.name,expand.team.collectionId,expand.team.id,expand.team_opponent.id'
+		};
 		if (search) {
 			option.filter = `name~"${search}" || team_opponent_name~"${search}"`;
 		}

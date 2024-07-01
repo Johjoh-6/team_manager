@@ -9,7 +9,7 @@ export const load = (async ({ locals }) => {
 	if (!locals.pb.authStore.isValid) {
 		redirect(303, '/login');
 	}
-	try{
+	try {
 		const user = locals.user;
 		const formEmail = await superValidate(user, zod(UserEmailSchema));
 		const formUsername = await superValidate(user, zod(UserUsernameSchema));
@@ -17,9 +17,7 @@ export const load = (async ({ locals }) => {
 			formEmail,
 			formUsername
 		};
-		
-	
-	} catch(err){
+	} catch (err) {
 		redirect(303, '/login');
 	}
 }) satisfies PageServerLoad;

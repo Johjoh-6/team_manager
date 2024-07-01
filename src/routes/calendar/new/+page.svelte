@@ -3,11 +3,11 @@
 	import type { PageData } from './$types';
 	import { getToastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { goto } from '$app/navigation';
-  
+
 	export let data: PageData;
-  
+
 	const toastStore = getToastStore();
-  
+
 	// Client API:
 	const { form, errors, enhance, message } = superForm(data.form, {
 		resetForm: false,
@@ -18,9 +18,9 @@
 					message: 'Création avec succès',
 					background: 'bg-success-500',
 					timeout: 3000,
-                    callback: () => {
-                        goto('/calendar')
-                    }
+					callback: () => {
+						goto('/calendar');
+					}
 				};
 				toastStore.trigger(t);
 				return;
@@ -36,23 +36,19 @@
 		};
 		toastStore.trigger(t);
 	}
-  </script>
-  
-  <svelte:head>
+</script>
+
+<svelte:head>
 	<title>Crée l'événement</title>
-  </svelte:head>
-  
-  <section class="content-grid content-grid justify-center p-4">
+</svelte:head>
+
+<section class="content-grid content-grid justify-center p-4">
 	<div
 		class="bg-surface-300-600-token flex w-full flex-col gap-4 p-8 shadow-md rounded-container-token"
 	>
-		<h1 class="text-3xl font-semibold text-primary-500 text-center">Crée un évenement</h1>
-		<form
-			class="form grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4"
-			use:enhance
-			method="POST"
-		>
-        <input type="text" hidden value={data.team?.id} id="team" name="team">
+		<h1 class="text-center text-3xl font-semibold text-primary-500">Crée un évenement</h1>
+		<form class="form grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4" use:enhance method="POST">
+			<input type="text" hidden value={data.team?.id} id="team" name="team" />
 			<label class="label" for="name">
 				<span>Nom de l'évenement</span>
 				<input
@@ -71,10 +67,10 @@
 				<select class="select capitalize" name="type" id="type" bind:value={$form.type}>
 					<option value="">Choisir un type d'évenement</option>
 					{#each data.eventType as t}
-					<option value={t.id} selected={$form.type == t.id}>
-					  {t.name}
-					</option>
-				  {/each}
+						<option value={t.id} selected={$form.type == t.id}>
+							{t.name}
+						</option>
+					{/each}
 				</select>
 				{#if $errors.type}
 					<p class="text-error-500">{$errors.type}</p>
@@ -97,30 +93,30 @@
 			<label class="label" for="date_start">
 				<span>Date de début</span>
 				<input
-				  class="input {$errors.date_start && 'input-error'}"
-				  type="datetime-local"
-				  id="date_start"
-				  name="date_start"
-				  bind:value={$form.date_start}
+					class="input {$errors.date_start && 'input-error'}"
+					type="datetime-local"
+					id="date_start"
+					name="date_start"
+					bind:value={$form.date_start}
 				/>
 				{#if $errors.date_start}
-				  <p class="text-error-500">{$errors.date_start}</p>
+					<p class="text-error-500">{$errors.date_start}</p>
 				{/if}
-			  </label>
-			  
-			  <label class="label" for="date_end">
+			</label>
+
+			<label class="label" for="date_end">
 				<span>Date de fin</span>
 				<input
-				  class="input {$errors.date_end && 'input-error'}"
-				  type="datetime-local"
-				  id="date_end"
-				  name="date_end"
-				  bind:value={$form.date_end}
+					class="input {$errors.date_end && 'input-error'}"
+					type="datetime-local"
+					id="date_end"
+					name="date_end"
+					bind:value={$form.date_end}
 				/>
 				{#if $errors.date_end}
-				  <p class="text-error-500">{$errors.date_end}</p>
+					<p class="text-error-500">{$errors.date_end}</p>
 				{/if}
-			  </label>
+			</label>
 
 			<label class="label md:col-span-2">
 				<span>Notes </span><span class="text-token text-xs opacity-85"> (facultatif)</span>
@@ -136,8 +132,8 @@
 					<p class="text-error-500">{$errors.note}</p>
 				{/if}
 			</label>
-			
-	  <button type="submit" class="variant-filled-primary btn mt-2 md:col-span-2">Créer</button>
-	</form>
-  </section>
-  
+
+			<button type="submit" class="variant-filled-primary btn mt-2 md:col-span-2">Créer</button>
+		</form>
+	</div>
+</section>

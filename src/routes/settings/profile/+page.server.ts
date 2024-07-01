@@ -9,14 +9,14 @@ export const load = (async ({ locals }) => {
 	if (!locals.pb.authStore.isValid) {
 		redirect(303, '/login');
 	}
-	try{
+	try {
 		const user = locals.user;
 		const form = await superValidate(user, zod(UserDataSchema));
-		
+
 		return {
 			form
 		};
-	} catch(err){
+	} catch (err) {
 		console.log(err);
 		redirect(303, '/login');
 	}
@@ -36,23 +36,20 @@ export const actions = {
 			});
 		}
 
-					try {
-						const { username } = await locals.pb
-							.collection('users')
-							.update(locals.user.id, form.data);
-						locals.user.username = username;
-					} catch (err) {
-						console.log('Error: ', err);
-						if (err instanceof ClientResponseError) {
-							error(err.status, err.message);
-						}
-						error(500, {
-							message:
-								"Quelque chose s'est mal passé lors de la connexion. Veuillez réessayer plus tard."
-						});
-					}
+		try {
+			const { username } = await locals.pb.collection('users').update(locals.user.id, form.data);
+			locals.user.username = username;
+		} catch (err) {
+			console.log('Error: ', err);
+			if (err instanceof ClientResponseError) {
+				error(err.status, err.message);
+			}
+			error(500, {
+				message: "Quelque chose s'est mal passé lors de la connexion. Veuillez réessayer plus tard."
+			});
+		}
 		return {
 			form
 		};
 	}
-}
+};

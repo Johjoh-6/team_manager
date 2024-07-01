@@ -10,35 +10,39 @@ import { PlayerSchema } from '$lib/models/schemaPlayer';
 import formatDateTime from '$lib/utils/formatDateTime';
 
 export const load = (async ({ locals, params }) => {
-    try {
-        const { id } = params;
-		if(!locals.user){
+	try {
+		const { id } = params;
+		if (!locals.user) {
 			redirect(303, '/login');
 		}
-        const player = await locals.pb.collection('players').getOne(id)
+		const player = await locals.pb.collection('players').getOne(id);
 
-		if ((!isRole(Roles.MANAGER, locals.user?.expand.role) || !isRole(Roles.PLAYER, locals.user?.expand.role)) && player.user_link !== locals.user.id) {
+		if (
+			(!isRole(Roles.MANAGER, locals.user?.expand.role) ||
+				!isRole(Roles.PLAYER, locals.user?.expand.role)) &&
+			player.user_link !== locals.user.id
+		) {
 			throw new Error('Forbidden');
 		}
-        const getPositionList = async (): Promise<RecordModel[]> => {
-            try {
-                const list = await locals.pb.collection('positions').getFullList();
-                return list ? list : [];
-            } catch (err) {
-                console.log('Error: ', err);
-                return [];
-            }
-        };
+		const getPositionList = async (): Promise<RecordModel[]> => {
+			try {
+				const list = await locals.pb.collection('positions').getFullList();
+				return list ? list : [];
+			} catch (err) {
+				console.log('Error: ', err);
+				return [];
+			}
+		};
 
-        const playerData = {
-            ...player,
-            bod: formatDateTime(player.bod, false)
-        }
-		
+		const playerData = {
+			...player,
+			bod: formatDateTime(player.bod, false)
+		};
+
 		const form = await superValidate(playerData, zod(PlayerSchema));
 
 		return {
-			positionList : await getPositionList(),
+			positionList: await getPositionList(),
 			form
 		};
 	} catch (err) {
@@ -49,9 +53,9 @@ export const load = (async ({ locals, params }) => {
 
 export const actions = {
 	default: async ({ request, locals, params }) => {
-        const { id } = params;
+		const { id } = params;
 		const form = await superValidate(request, zod(PlayerSchema));
-		
+
 		if (!form.valid) {
 			return message(form, 'Champs manquant', {
 				status: 400

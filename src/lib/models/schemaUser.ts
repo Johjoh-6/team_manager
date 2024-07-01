@@ -9,13 +9,16 @@ const UserSchema = z.object({
 		.regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, {
 			message:
 				'Le mot de passe doit contenir au moins une lettre, un chiffre et un caractère spécial'
-		}),
+		})
 });
 
 const UserDataSchema = z.object({
-	username: z.string().min(3, "Le nom d'utilisateur doit contenir au moins 3 caractères").optional(),
+	username: z
+		.string()
+		.min(3, "Le nom d'utilisateur doit contenir au moins 3 caractères")
+		.optional(),
 	last_name: z.string().optional(),
-	first_name: z.string().optional(),
+	first_name: z.string().optional()
 });
 
 const UserRegisterSchema = UserSchema.extend({
@@ -42,18 +45,25 @@ const UserUsernameSchema = z.object({
 
 const UserPasswordSchema = z
 	.object({
-		oldPassword: z.string({ required_error: 'L\'ancien mots de passe est requit' }),
+		oldPassword: z.string({ required_error: "L'ancien mots de passe est requit" }),
 		password: z
-			.string({required_error: 'Le mot de passe est requis'})
+			.string({ required_error: 'Le mot de passe est requis' })
 			.min(8, 'Le mot de passe doit contenir au moins 8 caractères')
 			.regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, {
 				message:
 					'Le mot de passe doit contenir au moins une lettre, un chiffre et un caractère spécial'
 			}),
-		passwordConfirm: z.string({ required_error: 'La confirmation du mot de passe est requise'})
+		passwordConfirm: z.string({ required_error: 'La confirmation du mot de passe est requise' })
 	})
 	.refine((data) => data.password === data.passwordConfirm, {
 		message: 'Les mots de passe ne correspondent pas'
 	});
 
-export { UserSchema, UserDataSchema,UserRegisterSchema, UserEmailSchema, UserUsernameSchema, UserPasswordSchema };
+export {
+	UserSchema,
+	UserDataSchema,
+	UserRegisterSchema,
+	UserEmailSchema,
+	UserUsernameSchema,
+	UserPasswordSchema
+};

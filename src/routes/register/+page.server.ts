@@ -24,7 +24,6 @@ export const actions = {
 		}
 		// by default the role is set to 'user' and evolve
 		try {
-
 			await locals.pb.collection('users').create({
 				email: form.data.email,
 				password: form.data.password,

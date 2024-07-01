@@ -9,25 +9,25 @@ import { matchHistorySchema } from '$lib/models/schemaMatchHistory';
 import formatDateTime from '$lib/utils/formatDateTime';
 
 export const load = (async ({ locals, params }) => {
-    try {
-        const { id } = params;
+	try {
+		const { id } = params;
 		if (!isRole(Roles.MANAGER, locals.user?.expand.role)) {
 			throw new Error('Forbidden');
 		}
 
-        const history = await locals.pb.collection('match_history').getOne(id)
+		const history = await locals.pb.collection('match_history').getOne(id);
 
-        const getTeamsList = async (): Promise<RecordModel[]> => {
-            try {
-                const list = await locals.pb.collection('teams').getFullList({
-                    fields: 'id,name'
-                });
-                return list ? list : [];
-            } catch (err) {
-                console.log('Error: ', err);
-                return [];
-            }
-        };
+		const getTeamsList = async (): Promise<RecordModel[]> => {
+			try {
+				const list = await locals.pb.collection('teams').getFullList({
+					fields: 'id,name'
+				});
+				return list ? list : [];
+			} catch (err) {
+				console.log('Error: ', err);
+				return [];
+			}
+		};
 
 		const historyData = {
 			...history,
@@ -37,7 +37,7 @@ export const load = (async ({ locals, params }) => {
 		const form = await superValidate(historyData, zod(matchHistorySchema));
 
 		return {
-			teamList : await getTeamsList(),
+			teamList: await getTeamsList(),
 			form
 		};
 	} catch (err) {
@@ -48,9 +48,9 @@ export const load = (async ({ locals, params }) => {
 
 export const actions = {
 	default: async ({ request, locals, params }) => {
-        const { id } = params;
+		const { id } = params;
 		const form = await superValidate(request, zod(matchHistorySchema));
-		
+
 		if (!form.valid) {
 			return message(form, 'Champs manquant', {
 				status: 400

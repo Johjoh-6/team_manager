@@ -48,7 +48,7 @@
 		</div>
 	</CardsBasic>
 	{#if team?.expand?.players}
-		<CardsBasic >
+		<CardsBasic>
 			<h2 slot="header" class="text-center text-lg font-semibold text-primary-500">
 				Nombre de joueurs<span>({team?.expand?.players?.length ?? 0})</span>
 			</h2>
@@ -57,7 +57,7 @@
 			{:else}
 				<ul class="flex flex-col gap-2">
 					{#each team?.expand?.players as player}
-						<li class="grid w-full items-center justify-between gap-2 grid-cols-4">
+						<li class="grid w-full grid-cols-4 items-center justify-between gap-2">
 							<Avatar
 								src={player.picture != ''
 									? getImageURL(player.collectionId, player.id, player.picture, '24x24')
@@ -78,7 +78,7 @@
 							{:else}
 								<p>Position non renseignée</p>
 							{/if}
-							<p class="text-xl font-semibold text-center">
+							<p class="text-center text-xl font-semibold">
 								#{player.player_number ?? '?'}
 							</p>
 						</li>
@@ -88,9 +88,6 @@
 		</CardsBasic>
 	{/if}
 	{#if !data.team}
-		<a href={`/teams/${team.id}/join`}
-			class="btn variant-filled-primary"
-			>Rejoindre</a
-		>
+		<a href={`/teams/${team.id}/join`} class="variant-filled-primary btn">Rejoindre</a>
 	{/if}
 </section>

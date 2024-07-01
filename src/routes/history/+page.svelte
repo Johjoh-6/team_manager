@@ -32,7 +32,7 @@
 
 	const onPageChange = async (e: CustomEvent): Promise<void> => {
 		page = e.detail;
-		goto(`/history?page=${page+1}&perPage=${perPage}`);
+		goto(`/history?page=${page + 1}&perPage=${perPage}`);
 	};
 
 	const onAmountChange = async (e: CustomEvent): Promise<void> => {
@@ -64,13 +64,8 @@
 <section class="content-grid flow">
 	<h1 class="p-2 text-center text-xl">Les résultats des matchs</h1>
 	{#if data.isManager}
-	<a
-		href="/history/new"
-		class="btn font-bold variant-filled-primary"
-	>
-		Ajouter un historique
-	</a>
-{/if}
+		<a href="/history/new" class="variant-filled-primary btn font-bold"> Ajouter un historique </a>
+	{/if}
 
 	<p>Trouver un réseultat de match</p>
 	<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
@@ -85,13 +80,18 @@
 		<button
 			class="variant-filled-secondary hover:variant-ghost-secondary"
 			on:click={handleSearch}
-			on:keydown={handleKeySearch}>
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="fill-white h-5 w-5 md:hidden"><path d="M3 12.9999H9V10.9999H3V1.84558C3 1.56944 3.22386 1.34558 3.5 1.34558C3.58425 1.34558 3.66714 1.36687 3.74096 1.40747L22.2034 11.5618C22.4454 11.6949 22.5337 11.9989 22.4006 12.2409C22.3549 12.324 22.2865 12.3924 22.2034 12.4381L3.74096 22.5924C3.499 22.7255 3.19497 22.6372 3.06189 22.3953C3.02129 22.3214 3 22.2386 3 22.1543V12.9999Z"></path></svg>
-			<span class="hidden md:block">
-				Trouver
-			</span>
-			</button
+			on:keydown={handleKeySearch}
 		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 24 24"
+				class="h-5 w-5 fill-white md:hidden"
+				><path
+					d="M3 12.9999H9V10.9999H3V1.84558C3 1.56944 3.22386 1.34558 3.5 1.34558C3.58425 1.34558 3.66714 1.36687 3.74096 1.40747L22.2034 11.5618C22.4454 11.6949 22.5337 11.9989 22.4006 12.2409C22.3549 12.324 22.2865 12.3924 22.2034 12.4381L3.74096 22.5924C3.499 22.7255 3.19497 22.6372 3.06189 22.3953C3.02129 22.3214 3 22.2386 3 22.1543V12.9999Z"
+				></path></svg
+			>
+			<span class="hidden md:block"> Trouver </span>
+		</button>
 	</div>
 
 	{#if data.histories.length === 0}
@@ -105,45 +105,62 @@
 			{#each data.histories as history}
 				<AccordionItem>
 					<svelte:fragment slot="summary">
-						<div class="flex gap-2 p-2 items-center">
-						<Avatar
-							width="w-12 md:w-16"
-							src={history.expand?.team.logo != ''
-								? getImageURL(history.expand?.team.collectionId, history.expand?.team.id, history.expand?.team.logo, '24x24')
-								: ''}
-							alt={history.expand?.team.name}
-							/>
-							
-							<span class="text-secondary-500 font-semibold text-xl"> VS </span>
-							{#if history.expand?.team_opponent}
+						<div class="flex items-center gap-2 p-2">
 							<Avatar
-							width="w-12 md:w-16"
-							src={history.expand?.team_opponent.logo != ''
-									? getImageURL(history.expand?.team.collectionId, history.expand?.team_opponent.id, history.expand?.team_opponent.logo, '24x24')
-									: ''}
-								alt={history.expand.team_opponent.name}
-								/>
-								{:else}
-								<Avatar
 								width="w-12 md:w-16"
-								initials={history.team_opponent_name}
-								alt={history.team_opponent_name}
+								src={history.expand?.team.logo != ''
+									? getImageURL(
+											history.expand?.team.collectionId,
+											history.expand?.team.id,
+											history.expand?.team.logo,
+											'24x24'
+										)
+									: ''}
+								alt={history.expand?.team.name}
+							/>
+
+							<span class="text-xl font-semibold text-secondary-500"> VS </span>
+							{#if history.expand?.team_opponent}
+								<Avatar
+									width="w-12 md:w-16"
+									src={history.expand?.team_opponent.logo != ''
+										? getImageURL(
+												history.expand?.team.collectionId,
+												history.expand?.team_opponent.id,
+												history.expand?.team_opponent.logo,
+												'24x24'
+											)
+										: ''}
+									alt={history.expand.team_opponent.name}
 								/>
-								{/if}
-								{history.name}
-							</div>
+							{:else}
+								<Avatar
+									width="w-12 md:w-16"
+									initials={history.team_opponent_name}
+									alt={history.team_opponent_name}
+								/>
+							{/if}
+							{history.name}
+						</div>
 					</svelte:fragment>
 					<svelte:fragment slot="content">
 						<div class="flex flex-col gap-1 text-center">
 							<p>{history.score} <strong>/</strong> {history.score_opponent}</p>
-							<p>{history.expand?.team.name} <strong>/</strong> {history.expand?.team_opponent ? history.expand?.team_opponent.name : history.expand?.team_opponent_name}</p>
+							<p>
+								{history.expand?.team.name} <strong>/</strong>
+								{history.expand?.team_opponent
+									? history.expand?.team_opponent.name
+									: history.expand?.team_opponent_name}
+							</p>
 							<p>{dateFormatFr(history.match_date)}</p>
 							<p>{history.expand?.team.sport.name}</p>
 							{#if history.description}
-							<p>{history.description}</p>
+								<p>{history.description}</p>
 							{/if}
 							{#if history.team === data.team?.id && data.isManager}
-								<a href="/history/edit-{history.id}" class="btn variant-ghost-primary">Modifier le match</a>
+								<a href="/history/edit-{history.id}" class="variant-ghost-primary btn"
+									>Modifier le match</a
+								>
 							{/if}
 						</div>
 					</svelte:fragment>

@@ -5,7 +5,7 @@ import { eventSchema } from '$lib/models/schemaEvent';
 import { error, redirect } from '@sveltejs/kit';
 import isRole from '$lib/utils/isRole';
 import { Roles } from '$lib/enum/rolesEnum';
-import  formatDateTime  from '$lib/utils/formatDateTime';
+import formatDateTime from '$lib/utils/formatDateTime';
 import { ClientResponseError } from 'pocketbase';
 
 export const load = (async ({ locals, params }) => {
@@ -52,19 +52,19 @@ export const actions = {
 		if (!form.valid) {
 			return { form };
 		}
-		
-		  try {
+
+		try {
 			// transform the date to the right format
 			form.data.date_start = new Date(form.data.date_start).toISOString();
 			form.data.date_end = new Date(form.data.date_end).toISOString();
 			// Update the event data in your database
 			await locals.pb.collection('events').update(id, form.data);
 			return message(form, '');
-		  } catch (err) {
+		} catch (err) {
 			console.error('Error: ', err);
 			if (err instanceof ClientResponseError) {
 				if (err.status === 400) {
-					return message(form, "Erreur lors de la modification", {
+					return message(form, 'Erreur lors de la modification', {
 						status: 400
 					});
 				}
@@ -74,5 +74,5 @@ export const actions = {
 			});
 		}
 		return { form };
-	},
+	}
 };

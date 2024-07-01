@@ -1,5 +1,5 @@
 <script lang="ts">
-	import  { superForm } from 'sveltekit-superforms';
+	import { superForm } from 'sveltekit-superforms';
 	import type { PageData } from './$types';
 	import { getToastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import { goto } from '$app/navigation';
@@ -46,11 +46,9 @@
 	<div
 		class="bg-surface-300-600-token flex w-full flex-col gap-4 p-8 shadow-md rounded-container-token"
 	>
-		<h1 class="text-center text-3xl font-semibold text-primary-500">
-			Crée un historique du match
-		</h1>
+		<h1 class="text-center text-3xl font-semibold text-primary-500">Crée un historique du match</h1>
 		<form class="form grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4" use:enhance method="POST">
-            <input type="text" hidden name="team" value={data.team?.id}>
+			<input type="text" hidden name="team" value={data.team?.id} />
 			<label class="label" for="name">
 				<span>Nom de l'évenement</span>
 				<input
@@ -83,8 +81,10 @@
 					<p class="text-error-500">{$errors.team_opponent}</p>
 				{/if}
 			</label>
-            <label class="label" for="team_opponent_name">
-				<span>Nom de l'équipe adverse</span><span class="text-token text-xs opacity-85"> (Si non trouver dans la liste)</span>
+			<label class="label" for="team_opponent_name">
+				<span>Nom de l'équipe adverse</span><span class="text-token text-xs opacity-85">
+					(Si non trouver dans la liste)</span
+				>
 				<input
 					class="input {$errors.team_opponent_name && 'input-error'}"
 					type="text"

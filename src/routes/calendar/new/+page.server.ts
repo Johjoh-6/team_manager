@@ -15,7 +15,6 @@ export const load = (async ({ locals }) => {
 
 		const eventType = await locals.pb.collection('event_type').getFullList();
 
-		
 		const form = await superValidate(zod(eventSchema));
 
 		return {
@@ -35,20 +34,20 @@ export const actions = {
 		if (!form.valid) {
 			return { form };
 		}
-		
-		  try {
+
+		try {
 			// transform the date to the right format
 			form.data.date_start = new Date(form.data.date_start).toISOString();
 			form.data.date_end = new Date(form.data.date_end).toISOString();
-            
+
 			// create the event data in your database
 			await locals.pb.collection('events').create(form.data);
 			return message(form, '');
-		  } catch (err) {
+		} catch (err) {
 			console.error('Error: ', err);
 			if (err instanceof ClientResponseError) {
 				if (err.status === 400) {
-					return message(form, "Erreur lors de la création", {
+					return message(form, 'Erreur lors de la création', {
 						status: 400
 					});
 				}
@@ -57,5 +56,5 @@ export const actions = {
 				message: "Quelque chose s'est mal passé lors de la connexion. Veuillez réessayer plus tard."
 			});
 		}
-	},
+	}
 };

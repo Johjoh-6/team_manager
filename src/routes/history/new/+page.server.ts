@@ -8,27 +8,27 @@ import { Roles } from '$lib/enum/rolesEnum';
 import { matchHistorySchema } from '$lib/models/schemaMatchHistory';
 
 export const load = (async ({ locals }) => {
-    try {
+	try {
 		if (!isRole(Roles.MANAGER, locals.user?.expand.role)) {
 			throw new Error('Forbidden');
 		}
 
-        const getTeamsList = async (): Promise<RecordModel[]> => {
-            try {
-                const list = await locals.pb.collection('teams').getFullList({
-                    fields: 'id,name'
-                });
-                return list ? list : [];
-            } catch (err) {
-                console.log('Error: ', err);
-                return [];
-            }
-        };
-		
+		const getTeamsList = async (): Promise<RecordModel[]> => {
+			try {
+				const list = await locals.pb.collection('teams').getFullList({
+					fields: 'id,name'
+				});
+				return list ? list : [];
+			} catch (err) {
+				console.log('Error: ', err);
+				return [];
+			}
+		};
+
 		const form = await superValidate(zod(matchHistorySchema));
 
 		return {
-			teamList : await getTeamsList(),
+			teamList: await getTeamsList(),
 			form
 		};
 	} catch (err) {
@@ -40,7 +40,7 @@ export const load = (async ({ locals }) => {
 export const actions = {
 	default: async ({ request, locals }) => {
 		const form = await superValidate(request, zod(matchHistorySchema));
-		
+
 		if (!form.valid) {
 			return message(form, 'Champs manquant', {
 				status: 400

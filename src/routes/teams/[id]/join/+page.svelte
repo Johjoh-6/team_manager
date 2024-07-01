@@ -3,28 +3,27 @@
 	import { getToastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import type { ActionData, PageData } from './$types';
 	import { goto } from '$app/navigation';
-    
+
 	export let data: PageData;
-    export let form: ActionData;
+	export let form: ActionData;
 
-    const toastStore = getToastStore();
+	const toastStore = getToastStore();
 
-    let t: ToastSettings;
-$: if (form && form?.success) {
-    t = {
-        message: "Joueur réclamé avec succès",
-        background: 'bg-green-500'
-    };
-    toastStore.trigger(t);	
-    goto('/teams');
-} else if (form && form?.error) {
-    t = {
-        message: 'Erreur lors de la réclamation du joueur',
-        background: 'bg-error-500'
-    };
-    toastStore.trigger(t);
-
-}
+	let t: ToastSettings;
+	$: if (form && form?.success) {
+		t = {
+			message: 'Joueur réclamé avec succès',
+			background: 'bg-green-500'
+		};
+		toastStore.trigger(t);
+		goto('/teams');
+	} else if (form && form?.error) {
+		t = {
+			message: 'Erreur lors de la réclamation du joueur',
+			background: 'bg-error-500'
+		};
+		toastStore.trigger(t);
+	}
 </script>
 
 <svelte:head>

@@ -9,25 +9,25 @@ import { Roles } from '$lib/enum/rolesEnum';
 import { PlayerSchema } from '$lib/models/schemaPlayer';
 
 export const load = (async ({ locals }) => {
-    try {
+	try {
 		if (!isRole(Roles.MANAGER, locals.user?.expand.role)) {
 			throw new Error('Forbidden');
 		}
 
-        const getPositionList = async (): Promise<RecordModel[]> => {
-            try {
-                const list = await locals.pb.collection('positions').getFullList();
-                return list ? list : [];
-            } catch (err) {
-                console.log('Error: ', err);
-                return [];
-            }
-        };
-		
+		const getPositionList = async (): Promise<RecordModel[]> => {
+			try {
+				const list = await locals.pb.collection('positions').getFullList();
+				return list ? list : [];
+			} catch (err) {
+				console.log('Error: ', err);
+				return [];
+			}
+		};
+
 		const form = await superValidate(zod(PlayerSchema));
 
 		return {
-			positionList : await getPositionList(),
+			positionList: await getPositionList(),
 			form
 		};
 	} catch (err) {
@@ -39,8 +39,7 @@ export const load = (async ({ locals }) => {
 export const actions = {
 	default: async ({ request, locals }) => {
 		const form = await superValidate(request, zod(PlayerSchema));
-		
-		
+
 		if (!form.valid) {
 			return message(form, 'Champs manquant', {
 				status: 400
@@ -48,16 +47,16 @@ export const actions = {
 		}
 
 		try {
-            const userId = locals?.user?.id ?? '';
-            const team = await locals.pb.collection('teams').getFirstListItem(`manager="${userId}"`, {
-                fields: 'id'
-            });
+			const userId = locals?.user?.id ?? '';
+			const team = await locals.pb.collection('teams').getFirstListItem(`manager="${userId}"`, {
+				fields: 'id'
+			});
 			// serialize remove the undefined values and clean the object
 			const newPlayer = await locals.pb.collection('players').create(serialize(form.data));
-            // add new player to the team
-            await locals.pb.collection('teams').update(team.id, {
-                "players+": newPlayer.id 
-            });
+			// add new player to the team
+			await locals.pb.collection('teams').update(team.id, {
+				'players+': newPlayer.id
+			});
 		} catch (err) {
 			console.error('Error: ', err);
 			if (err instanceof ClientResponseError) {

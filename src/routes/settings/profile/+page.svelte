@@ -3,37 +3,37 @@
 	import { goto } from '$app/navigation';
 	import { getToastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types';
-  
+
 	export let data: PageData;
 	const toastStore = getToastStore();
-  
+
 	const { form, errors, enhance, message } = superForm(data.form, {
-	  resetForm: false,
-	  applyAction: false,
-	  onResult({ result }) {
-		if (result.status === 200) {
-		  toastStore.trigger({
-			message: 'Information mis à jour avec succès',
-			background: 'bg-success-500',
-			timeout: 3000,
-		  });
-		} 
-	  },
+		resetForm: false,
+		applyAction: false,
+		onResult({ result }) {
+			if (result.status === 200) {
+				toastStore.trigger({
+					message: 'Information mis à jour avec succès',
+					background: 'bg-success-500',
+					timeout: 3000
+				});
+			}
+		}
 	});
-  
+
 	$: if ($message) {
-	  const t: ToastSettings = {
-		message: $message,
-		background: 'bg-error-500',
-		timeout: 3000
-	  };
-	  toastStore.trigger(t);
+		const t: ToastSettings = {
+			message: $message,
+			background: 'bg-error-500',
+			timeout: 3000
+		};
+		toastStore.trigger(t);
 	}
-  </script>
-  
-	<div class="bg-surface-300-600-token w-full max-w-md p-8 shadow-md rounded-container-token flow">
-	  <h1 class="mb-8 text-center text-4xl font-bold">Profil</h1>
-	  <form class="space-y-6 grid gap-2" use:enhance method="POST">
+</script>
+
+<div class="flow bg-surface-300-600-token w-full max-w-md p-8 shadow-md rounded-container-token">
+	<h1 class="mb-8 text-center text-4xl font-bold">Profil</h1>
+	<form class="grid gap-2 space-y-6" use:enhance method="POST">
 		<label class="label" for="first_name">
 			<span>Nom :</span>
 			<input
@@ -61,6 +61,5 @@
 			{/if}
 		</label>
 		<button class="btn bg-primary-500 text-white" type="submit">Mettre à jour</button>
-	  </form>
-	</div>
-  
+	</form>
+</div>

@@ -73,19 +73,19 @@
 			>
 		</li>
 		{#if $page.data.isManager}
-		<li>
-			<a
-				class="btn p-2 text-xl font-semibold hover:variant-ghost-primary {$page.url.pathname.startsWith(
-					'/manager'
-				)
-					? 'bg-primary-active-token'
-					: 'variant-ghost-surface'}"
-				href="/manager"
-				on:click={drawerClose}
-				aria-current={$page.url.pathname.startsWith('/manager') ? 'page' : undefined}
-				data-sveltekit-preload-data="hover">Requetes</a
-			>
-		</li>
+			<li>
+				<a
+					class="btn p-2 text-xl font-semibold hover:variant-ghost-primary {$page.url.pathname.startsWith(
+						'/manager'
+					)
+						? 'bg-primary-active-token'
+						: 'variant-ghost-surface'}"
+					href="/manager"
+					on:click={drawerClose}
+					aria-current={$page.url.pathname.startsWith('/manager') ? 'page' : undefined}
+					data-sveltekit-preload-data="hover">Requetes</a
+				>
+			</li>
 		{/if}
 		<li>
 			<a
