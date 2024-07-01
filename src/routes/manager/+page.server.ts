@@ -5,8 +5,12 @@ import type { PageServerLoad } from './$types';
 
 
 
-export const load = (async ({ locals, url }) => {
+export const load = (async ({ locals, url, parent }) => {
     try {
+        const {team} = await parent();
+        if(!team){
+            throw new Error('Team not found');
+        }
         if (!isRole(Roles.MANAGER, locals.user?.expand.role)) {
             throw new Error('Forbidden');
         }
@@ -14,14 +18,21 @@ export const load = (async ({ locals, url }) => {
         const perPage = Number(url.searchParams.get('perPage')) || 10;
         const search = url.searchParams.get('search') || '';
 
+
+        let filterString = "teamID={:team} && created>{:sevenDaysAgo}"
+        if (search) {
+            filterString += `&& (playerID.first_name~"${search}" || playerID.last_name~"${search}")`;
+        }
         const option: Record<string, string> = {
            expand: 'playerID',
-            fields: '*,expand.playerID.last_name,expand.playerID.first_name'
+            fields: '*,expand.playerID.last_name,expand.playerID.first_name',
+            filter: locals.pb.filter(filterString, {
+                team: team.id,
+                sevenDaysAgo: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+            })
         };
-        if (search) {
-            option.filter = `playerID.first_name~"${search}" || playerID.last_name~"${search}"`;
-        }
         const claims =  await locals.pb.collection('claim_requests').getList(page, perPage, option);
+        console.log('claims', claims);
         return {
             claims: claims.items,
             totalPages: claims.totalPages,
