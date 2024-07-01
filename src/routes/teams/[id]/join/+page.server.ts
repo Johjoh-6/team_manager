@@ -1,6 +1,9 @@
 import { error, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { ClientResponseError } from 'pocketbase';
+import { claimSchema } from '$lib/models/schemaClaim';
+import { zod } from 'sveltekit-superforms/adapters';
+import { message, superValidate } from 'sveltekit-superforms';
 
 export const load = (async ({params, locals}) => {
     if (!locals.user) {
@@ -24,19 +27,26 @@ export const load = (async ({params, locals}) => {
 
 export const actions = {
     default: async ({ request, locals, params }) => {
+		const form = await superValidate(request, zod(claimSchema));
 		const { id } = params;
 		if(!locals.user){
 			error(401, 'Unauthorized');
 		}
-		const form = await request.formData();
-		const idToClaim = form.get('idPlayer') as string;
-
-		console.log('claim id', idToClaim);
-		if(typeof idToClaim !== 'string'){
-			error(400, 'Bad Request');
+		
+		form.data.teamID = id;
+		form.data.userID = locals.user.id;
+		if (!form.valid) {
+			return message(form, 'Champs manquant', {
+				status: 400
+			});
 		}
 		try {
-			const player = await locals.pb.collection('players').getOne(idToClaim);
+			if(!form.data.playerID){
+				return {
+					error: true
+				}
+			}
+			const player = await locals.pb.collection('players').getOne(form.data.playerID);
 			if(!player){
 				return {
 					error: true
@@ -45,12 +55,7 @@ export const actions = {
 			if(player.claimed){
 				error(400, 'Bad Request');
 			}
-			const claim = await locals.pb.collection('claim_requests').create({
-				playerID: idToClaim,
-				teamID: id,
-				status: 'pending',
-				userID: locals.user.id
-			});
+			const claim = await locals.pb.collection('claim_requests').create(form.data);
 			if(claim){
 				return {
 					success: true
