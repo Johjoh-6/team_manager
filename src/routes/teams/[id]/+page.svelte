@@ -4,7 +4,6 @@
 	import { getImageURL } from '$lib/utils/getImageUrl';
 	import CardsBasic from '$lib/components/CardsBasic.svelte';
 	import { Avatar } from '@skeletonlabs/skeleton';
-	import { goto } from '$app/navigation';
 
 	export let data: PageData;
 	const team: RecordModel = data.teamId;
@@ -58,7 +57,7 @@
 			{:else}
 				<ul class="flex flex-col gap-2">
 					{#each team?.expand?.players as player}
-						<li class="flex w-full flex-nowrap items-center justify-between gap-2">
+						<li class="grid w-full items-center justify-between gap-2 grid-cols-4">
 							<Avatar
 								src={player.picture != ''
 									? getImageURL(player.collectionId, player.id, player.picture, '24x24')
@@ -79,7 +78,7 @@
 							{:else}
 								<p>Position non renseignée</p>
 							{/if}
-							<p class="text-xl font-semibold">
+							<p class="text-xl font-semibold text-center">
 								#{player.player_number ?? '?'}
 							</p>
 						</li>
@@ -89,11 +88,9 @@
 		</CardsBasic>
 	{/if}
 	{#if !data.team}
-		<button
+		<a href={`/teams/${team.id}/join`}
 			class="btn variant-filled-primary"
-			on:click={() => {
-				goto(`/teams/${team.id}/join`)
-			}}>Rejoindre</button
+			>Rejoindre</a
 		>
 	{/if}
 </section>
