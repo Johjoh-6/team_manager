@@ -7,13 +7,13 @@ WORKDIR /app
 COPY package*.json .
 
 # Install the dependencies
-RUN pnpm ci
+RUN npm install
 # Copy the source code
 COPY . .
 
 # Build the application
-RUN pnpm run build
-RUN pnpm prune --production
+RUN npm run build
+RUN npm prune --production
 
 FROM node:20.14-alpine AS deployer
 
