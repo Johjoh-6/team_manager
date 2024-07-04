@@ -23,7 +23,11 @@
 	slotTrail="place-content-end"
 	background="bg-surface-200-700-token"
 >
-	<svelte:fragment slot="lead">(icon)</svelte:fragment>
+	<svelte:fragment slot="lead">
+		<a href="/" data-sveltekit-reload>
+			<img src="/HT_logo.png" alt="logo" class="w-8 h-8">
+		</a>
+	</svelte:fragment>
 	<strong class="text-nowrap text-2xl uppercase text-primary-500">Handy Team</strong>
 	<svelte:fragment slot="trail">
 		{#if $page.data.isConnected}
