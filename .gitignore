@@ -12,3 +12,8 @@ vite.config.ts.timestamp-*
 
 # remove test file
 /test-results
+
+# remove docker for test with nixpack
+/docker-compose.yml
+Dockerfile
+.dockerignore
