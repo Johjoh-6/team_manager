@@ -21,6 +21,7 @@
 				aria-current={$page.url.pathname === '/' ? 'page' : undefined}>Accueil</a
 			>
 		</li>
+		{#if $page.data.isConnected}
 		<li>
 			<a
 				class="btn p-2 text-xl font-semibold hover:variant-ghost-primary {$page.url.pathname.startsWith(
@@ -98,6 +99,20 @@
 				on:click={drawerClose}
 				aria-current={$page.url.pathname.startsWith('/history') ? 'page' : undefined}
 				data-sveltekit-preload-data="hover">Paramètres</a
+			>
+		</li>
+		{/if}
+		<li>
+			<a
+				class="btn p-2 text-xl font-semibold hover:variant-ghost-primary {$page.url.pathname.startsWith(
+					'/about'
+				)
+					? 'bg-primary-active-token'
+					: 'variant-ghost-surface'}"
+				href="/about"
+				on:click={drawerClose}
+				aria-current={$page.url.pathname.startsWith('/about') ? 'page' : undefined}
+				data-sveltekit-preload-data="hover">A propos</a
 			>
 		</li>
 	</ul>
