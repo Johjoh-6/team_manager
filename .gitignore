@@ -10,6 +10,8 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vscode
 
+
+
 # remove test file
 /test-results
 
@@ -17,3 +19,6 @@ vite.config.ts.timestamp-*
 /docker-compose.yml
 Dockerfile
 .dockerignore
+
+# remove the package-lock.json
+package-lock.json
