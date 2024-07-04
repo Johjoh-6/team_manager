@@ -19,6 +19,3 @@ vite.config.ts.timestamp-*
 /docker-compose.yml
 Dockerfile
 .dockerignore
-
-# remove the package-lock.json
-package-lock.json
