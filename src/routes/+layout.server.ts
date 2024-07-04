@@ -56,7 +56,8 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 					filter: 'date_start>@now'
 				});
 				return list.items.length > 0 ? list.items : null;
-			} catch (error) {
+			} catch (err) {
+				// console.error('Error: ', err);
 				return null;
 			}
 		};
