@@ -17,6 +17,7 @@
 				toastStore.trigger({
 					message: 'Mots de passe modifié avec succès',
 					background: 'bg-success-500',
+					classes: 'text-black',
 					timeout: 3000
 				});
 				goto('/login');
@@ -28,6 +29,7 @@
 		const t: ToastSettings = {
 			message: $message,
 			background: 'bg-error-500',
+			classes: 'text-black',
 			timeout: 3000
 		};
 		toastStore.trigger(t);
