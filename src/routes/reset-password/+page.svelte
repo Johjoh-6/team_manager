@@ -7,7 +7,7 @@ import type { PageData } from './$types';
     export let data: PageData;
     
     const toastStore = getToastStore();
-    
+
     const { form, errors, enhance, message } = superForm(data.form, {
 		resetForm: false,
 		onResult({ result }) {
@@ -68,7 +68,7 @@ import type { PageData } from './$types';
 				{#if $errors.email}
 					<p class="mt-2 text-sm text-error-500">{$errors.email}</p>
 				{/if}
-            <button class="btn btn-primary" type="submit">Réinitialiser</button>
+            <button class="btn variant-gradient-secondary-primary text-nowrap bg-gradient-to-br font-bold" type="submit">Réinitialiser</button>
         </form>
     </div>
 </section>
