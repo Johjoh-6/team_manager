@@ -58,14 +58,16 @@
 	$: if (form?.update) {
 		t = {
 			message: 'Modification éffectuée avec succès',
-			background: 'bg-green-500'
+			background: 'bg-green-500',
+			classes: 'text-black',
 		};
 		toastStore.trigger(t);
 		goto('/manager');
 	} else if (form?.error) {
 		t = {
 			message: 'Erreur lors de la modification',
-			background: 'bg-error-500'
+			background: 'bg-error-500',
+			classes: 'text-black',
 		};
 		toastStore.trigger(t);
 	}

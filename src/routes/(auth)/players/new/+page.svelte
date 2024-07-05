@@ -16,6 +16,7 @@
 			if (result.status === 200) {
 				const t: ToastSettings = {
 					message: 'Création avec succès',
+					classes: 'text-black',
 					background: 'bg-success-500',
 					timeout: 3000,
 					callback: () => {
@@ -32,6 +33,7 @@
 		const t: ToastSettings = {
 			message: $message,
 			background: 'bg-error-500',
+			classes: 'text-black',
 			timeout: 3000
 		};
 		toastStore.trigger(t);

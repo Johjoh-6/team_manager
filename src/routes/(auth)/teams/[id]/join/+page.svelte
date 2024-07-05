@@ -13,14 +13,16 @@
 	$: if (form && form?.success) {
 		t = {
 			message: 'Joueur réclamé avec succès',
-			background: 'bg-green-500'
+			background: 'bg-green-500',
+			classes: 'text-black',
 		};
 		toastStore.trigger(t);
 		goto('/teams');
 	} else if (form && form?.error) {
 		t = {
 			message: 'Erreur lors de la réclamation du joueur',
-			background: 'bg-error-500'
+			background: 'bg-error-500',
+			classes: 'text-black',
 		};
 		toastStore.trigger(t);
 	}

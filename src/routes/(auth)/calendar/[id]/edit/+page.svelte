@@ -16,6 +16,7 @@
 				const t: ToastSettings = {
 					message: 'Modification avec succès',
 					background: 'bg-success-500',
+					classes: 'text-black',
 					timeout: 3000
 				};
 				toastStore.trigger(t);
@@ -28,6 +29,7 @@
 		const t: ToastSettings = {
 			message: $message,
 			background: 'bg-error-500',
+			classes: 'text-black',
 			timeout: 3000
 		};
 		toastStore.trigger(t);

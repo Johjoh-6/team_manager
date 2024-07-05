@@ -17,6 +17,7 @@
 			if (result.status === 200) {
 				const t: ToastSettings = {
 					message: 'Connexion réussie',
+					classes: 'text-black',
 					background: 'bg-success-500',
 					timeout: 3000
 				};
@@ -31,6 +32,7 @@
 		const t: ToastSettings = {
 			message: $message,
 			background: 'bg-error-500',
+			classes: 'text-black',
 			timeout: 3000
 		};
 		toastStore.trigger(t);
@@ -49,7 +51,7 @@
 				<!-- svelte-ignore a11y-label-has-associated-control -->
 				<label class="ml-2 block text-sm font-medium">E-mail</label>
 				<input
-					class="mt-1 block w-full border border-gray-300 px-3 py-2 shadow-sm rounded-token focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+					class="mt-1 block w-full border border-gray-300 px-3 py-2 shadow-sm rounded-token focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm text-black "
 					type="email"
 					name="email"
 					placeholder="Example: myteam@gmail.com"
@@ -63,7 +65,7 @@
 			<div>
 				<Password
 					classLabel="block text-sm font-medium  ml-2"
-					classInput="mt-1 block w-full border border-gray-300 rounded-token shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+					classInput="mt-1 block w-full border border-gray-300 rounded-token shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-secondary-500"
 					bind:value={$form.password}
 					error={$errors.password}
 				/>
