@@ -2,7 +2,7 @@
 	const year = new Date().getFullYear();
 </script>
 
-<div class="w-full p-1 flex gap-2 justify-center">
+<div class="w-full p-1 flex flex-col md:flex-row gap-2 justify-center">
 	<p class="text-tertiary-700-200-token text-nowrap text-center">
 		Copyright Handy Team 2024 - {year}
 	</p>
