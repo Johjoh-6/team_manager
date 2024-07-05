@@ -98,7 +98,7 @@
 			on:click={handleReset}>Retour</button
 		>
 	{:else}
-		<div class="grid gap-2 md:grid-cols-2 lg:grid-cols-4">
+		<div class="grid gap-2 md:grid-cols-2 lg:grid-cols-3">
 			{#each data.events as event}
 				<a href="/calendar/{event.id}" class="card card-hover flex flex-col gap-2 p-2">
 					<p class=" text-center text-lg capitalize">

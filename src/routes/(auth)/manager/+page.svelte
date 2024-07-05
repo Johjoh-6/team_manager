@@ -116,7 +116,7 @@
 			on:click={handleReset}>Retour</button
 		>
 	{:else}
-		<div class="grid gap-2 lg:grid-cols-2 xl:grid-cols-4">
+		<div class="grid gap-2 lg:grid-cols-2 xl:grid-cols-3">
 			{#each data.claims as claim}
 				<CardsBasic
 					classCardBody="flow"
