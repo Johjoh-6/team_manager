@@ -13,7 +13,8 @@ export const load = (async ({ url, locals }) => {
 
 		const option: Record<string, string> = {
 			expand: 'type',
-			fields: '*,expand.type.name'
+			fields: '*,expand.type.name',
+			filter: 'date_start > @now'
 		};
 		if (search) {
 			option.filter = `name~"${search}"`;
