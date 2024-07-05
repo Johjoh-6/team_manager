@@ -5,5 +5,7 @@ export const load = (async ({locals}) => {
     if(!locals.user){
         redirect(303, '/login');
     }
-    
+    return {
+        idUser: locals.user.id
+    }
 }) satisfies LayoutServerLoad;
