@@ -70,11 +70,12 @@
 					error={$errors.password}
 				/>
 
-				<!-- <button
+				<a
+					href="/reset-password"
 					class="mt-2 ml-1 text-sm text-indigo-600 hover:text-indigo-500"
 					tabindex="-1"
-					formaction="?/forgot">Mots de passe oublié ?</button
-				> -->
+					>Mots de passe oublié ?</a
+				>
 			</div>
 			<div class="flex w-full flex-nowrap justify-between gap-2">
 				<!-- two button -->
