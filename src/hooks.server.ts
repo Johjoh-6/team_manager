@@ -5,7 +5,6 @@ import { env } from '$env/dynamic/public';
 import { serializeNonPOJOs } from '$lib/utils/serializeNonPojos';
 
 export const handle: Handle = async ({ event, resolve }) => {
-	// event.locals.pb = new PocketBase(env.PUBLIC_API_URL) as TypedPocketBase;
 	event.locals.pb = new PocketBase(env.PUBLIC_API_URL);
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
 
