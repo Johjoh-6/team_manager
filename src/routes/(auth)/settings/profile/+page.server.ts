@@ -17,7 +17,7 @@ export const load = (async ({ locals }) => {
 			form
 		};
 	} catch (err) {
-		console.log(err);
+		console.error(err);
 		redirect(303, '/login');
 	}
 }) satisfies PageServerLoad;
@@ -40,7 +40,7 @@ export const actions = {
 			const { username } = await locals.pb.collection('users').update(locals.user.id, form.data);
 			locals.user.username = username;
 		} catch (err) {
-			console.log('Error: ', err);
+			console.error('Error: ', err);
 			if (err instanceof ClientResponseError) {
 				error(err.status, err.message);
 			}

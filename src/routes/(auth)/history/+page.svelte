@@ -50,11 +50,9 @@
 		}
 	};
 	const handleReset = async (): Promise<void> => {
-		console.log('reset');
 		search = '';
 		goto(`/history?search=${search}`);
 	};
-	console.log(data);
 </script>
 
 <svelte:head>

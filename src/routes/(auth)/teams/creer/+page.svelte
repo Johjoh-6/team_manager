@@ -11,7 +11,6 @@
 		resetForm: false,
 		applyAction: false,
 		onResult({ result }) {
-			console.log(result);
 			if (result.status === 200) {
 				const t: ToastSettings = {
 					message: 'Ajout réussi',

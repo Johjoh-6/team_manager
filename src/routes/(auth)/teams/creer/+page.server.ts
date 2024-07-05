@@ -18,7 +18,7 @@ export const load = (async ({ parent, locals }) => {
 			const list = await locals.pb.collection('sports').getFullList();
 			return list ? list : [];
 		} catch (err) {
-			console.log('Error: ', err);
+			console.error('Error: ', err);
 			return [];
 		}
 	};

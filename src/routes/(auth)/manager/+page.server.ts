@@ -32,7 +32,6 @@ export const load = (async ({ locals, url, parent }) => {
 			})
 		};
 		const claims = await locals.pb.collection('claim_requests').getList(page, perPage, option);
-		console.log('claims', claims);
 		return {
 			claims: claims.items,
 			totalPages: claims.totalPages,

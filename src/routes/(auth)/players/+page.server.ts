@@ -46,7 +46,6 @@ export const actions = {
 		const form = await request.formData();
 		const idToDelete = form.get('id') as string;
 
-		console.log('delete the players', idToDelete);
 		if (!idToDelete || typeof idToDelete !== 'string') {
 			error(400, 'Bad Request');
 		}

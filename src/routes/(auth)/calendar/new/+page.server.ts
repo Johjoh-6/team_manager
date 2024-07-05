@@ -30,7 +30,6 @@ export const load = (async ({ locals }) => {
 export const actions = {
 	default: async ({ locals, request }) => {
 		const form = await superValidate(request, zod(eventSchema));
-		console.log('form', form);
 		if (!form.valid) {
 			return { form };
 		}

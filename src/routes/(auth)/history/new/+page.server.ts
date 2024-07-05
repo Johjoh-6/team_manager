@@ -20,7 +20,7 @@ export const load = (async ({ locals }) => {
 				});
 				return list ? list : [];
 			} catch (err) {
-				console.log('Error: ', err);
+				console.error('Error: ', err);
 				return [];
 			}
 		};

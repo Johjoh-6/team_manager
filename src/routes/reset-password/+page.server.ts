@@ -16,7 +16,7 @@ export const actions = {
 		try {
 			await locals.pb.collection('users').requestPasswordReset(form.data.email);
 		} catch (err) {
-			console.log('Error: ', err);
+			console.error('Error: ', err);
 			return message(form, 'Erreur durant la demande de réinitialisation de mot de passe.', {
                 status: 400
             });

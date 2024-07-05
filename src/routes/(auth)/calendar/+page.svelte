@@ -44,7 +44,6 @@
 		}
 	};
 	const handleReset = async (): Promise<void> => {
-		console.log('reset');
 		search = '';
 		goto(`/calendar?search=${search}`);
 	};

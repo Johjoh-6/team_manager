@@ -81,7 +81,7 @@ export const actions = {
 							formUsername
 						};
 					} catch (err) {
-						console.log('Error: ', err);
+						console.error('Error: ', err);
 						if (err instanceof ClientResponseError) {
 							error(err.status, err.message);
 						}

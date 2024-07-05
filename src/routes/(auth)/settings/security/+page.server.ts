@@ -32,7 +32,7 @@ export const actions = {
 			await locals.pb.collection('users').update(locals.user.id, form.data);
 			locals.pb.authStore.clear();
 		} catch (err) {
-			console.log('Error: ', err);
+			console.error('Error: ', err);
 			if (err instanceof ClientResponseError) {
 				return message(form, 'Mot de passe incorrect', {
 					status: 400

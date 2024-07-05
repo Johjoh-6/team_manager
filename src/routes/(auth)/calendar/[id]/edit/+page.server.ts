@@ -48,7 +48,6 @@ export const actions = {
 		const { id } = params;
 
 		const form = await superValidate(request, zod(eventSchema));
-		console.log('form', form);
 		if (!form.valid) {
 			return { form };
 		}

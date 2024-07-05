@@ -49,7 +49,6 @@
 		}
 	};
 	const handleReset = async (): Promise<void> => {
-		console.log('reset');
 		search = '';
 		goto(`/manager?search=${search}`);
 	};

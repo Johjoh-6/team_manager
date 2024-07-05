@@ -24,7 +24,7 @@ export const load = (async ({ locals, params }) => {
 				});
 				return list ? list : [];
 			} catch (err) {
-				console.log('Error: ', err);
+				console.error('Error: ', err);
 				return [];
 			}
 		};

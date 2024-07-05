@@ -50,7 +50,6 @@
 		}
 	};
 	const handleReset = async (): Promise<void> => {
-		console.log('reset');
 		search = '';
 		goto(`/players?search=${search}`);
 	};

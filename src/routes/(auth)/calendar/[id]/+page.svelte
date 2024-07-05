@@ -71,7 +71,6 @@
 				<button
 					class="btn bg-secondary-500 text-white"
 					on:click={() => {
-						console.log('Modifier');
 						goto(`/calendar/${event.id}/edit`);
 					}}>Modifier</button
 				>

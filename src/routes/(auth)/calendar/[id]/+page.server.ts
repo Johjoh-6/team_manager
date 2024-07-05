@@ -20,7 +20,6 @@ export const load = (async ({ locals, params }) => {
 export const actions = {
 	default: async ({ locals, params }) => {
 		const { id } = params;
-		console.log('delete the event', id);
 		if (!locals.pb.authStore.isValid) {
 			error(401, 'Unauthorized');
 		}

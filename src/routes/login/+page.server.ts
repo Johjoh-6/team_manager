@@ -52,7 +52,4 @@ export const actions = {
 		}
 		return { form };
 	},
-	forgot: async ({ request, locals }) => {
-		console.log('forgot');
-	}
 };

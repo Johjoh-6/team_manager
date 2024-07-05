@@ -27,7 +27,7 @@ export const load = (async ({ params, locals }) => {
 				const list = await locals.pb.collection('sports').getFullList();
 				return list ? list : [];
 			} catch (err) {
-				console.log('Error: ', err);
+				console.error('Error: ', err);
 				return [];
 			}
 		};
@@ -54,7 +54,6 @@ export const actions = {
 				status: 400
 			});
 		}
-		console.log('form', form);
 
 		try {
 			// serialize remove the undefined values and clean the object
