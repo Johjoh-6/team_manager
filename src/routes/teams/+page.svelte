@@ -89,7 +89,7 @@
 		</button>
 	</div>
 
-	{#if data.teams.length === 0}
+	{#if data.teams && data.teams.length === 0}
 		<p class="text-center">Pas d'équipes</p>
 		<button
 			class="btn bg-primary-500 font-bold text-white hover:text-token hover:ring-primary-400-500-token hover:bg-transparent"

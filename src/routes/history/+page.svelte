@@ -94,7 +94,7 @@
 		</button>
 	</div>
 
-	{#if data.histories.length === 0}
+	{#if data.histories && data.histories.length === 0}
 		<p class="text-center">Pas de matchs</p>
 		<button
 			class="btn bg-primary-500 font-bold text-white hover:text-token hover:ring-primary-400-500-token hover:bg-transparent"

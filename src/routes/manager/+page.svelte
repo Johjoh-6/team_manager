@@ -109,7 +109,7 @@
 		</button>
 	</div>
 
-	{#if data.claims.length === 0}
+	{#if data.claims && data.claims.length === 0}
 		<p class="text-center">Pas de requete</p>
 		<button
 			class="btn bg-primary-500 font-bold text-white hover:text-token hover:ring-primary-400-500-token hover:bg-transparent"
