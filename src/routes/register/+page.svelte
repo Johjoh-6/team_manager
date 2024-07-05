@@ -106,7 +106,7 @@
 					S'enregistrer
 				</button>
 				<button
-					class="btn variant-gradient-secondary-primary w-full text-nowrap bg-gradient-to-br rounded-token hover:bg-secondary-active-token"
+					class="btn variant-soft-primary w-full text-nowrap rounded-token hover:bg-secondary-active-token"
 					type="button"
 					tabindex="0"
 					on:click={() => {
