@@ -12,7 +12,7 @@ export const load = (async ({ params, locals }) => {
 		redirect(303, '/login');
 	}
 	try {
-		if(!isRole(Roles.USER, locals.user?.expand.role)){
+		if (!isRole(Roles.USER, locals.user?.expand.role)) {
 			throw new Error('Unauthorized');
 		}
 		const { id } = params;

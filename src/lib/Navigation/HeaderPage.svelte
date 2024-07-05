@@ -25,7 +25,7 @@
 >
 	<svelte:fragment slot="lead">
 		<a href="/" data-sveltekit-reload>
-			<img src="/HT_logo.png" alt="logo" class="w-8 h-8">
+			<img src="/HT_logo.png" alt="logo" class="h-8 w-8" />
 		</a>
 	</svelte:fragment>
 	<strong class="text-nowrap text-2xl uppercase text-primary-500">Handy Team</strong>

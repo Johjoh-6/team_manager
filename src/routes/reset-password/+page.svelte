@@ -1,14 +1,14 @@
 <script lang="ts">
-    import { getToastStore, type ToastSettings } from '@skeletonlabs/skeleton';
-import type { PageData } from './$types';
+	import { getToastStore, type ToastSettings } from '@skeletonlabs/skeleton';
+	import type { PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms';
 	import { goto } from '$app/navigation';
-    
-    export let data: PageData;
-    
-    const toastStore = getToastStore();
 
-    const { form, errors, enhance, message } = superForm(data.form, {
+	export let data: PageData;
+
+	const toastStore = getToastStore();
+
+	const { form, errors, enhance, message } = superForm(data.form, {
 		resetForm: false,
 		onResult({ result }) {
 			if (result.status === 200) {
@@ -35,9 +35,6 @@ import type { PageData } from './$types';
 		};
 		toastStore.trigger(t);
 	}
-
-
-
 </script>
 
 <svelte:head>
@@ -45,30 +42,34 @@ import type { PageData } from './$types';
 </svelte:head>
 
 <section class="content-grid flow">
-	<div class="bg-gradient-to-br variant-gradient-primary-secondary full-width flex flex-col gap-2 p-4">
-        <h1 class="text-center text-xl font-semibold">
-            Réinitialiser son mots de passe
-        </h1>
-        <p class="text-leg text-center">
-            Vous êtes sur le point de réinitialiser votre mots de passe. Veuillez saisir votre adresse email.
-        </p>
-    </div>
-    <div class="card flex flex-col gap-2 p-4">
-        <h2 class="text-center text-lg font-semibold text-primary-500">Saisir votre adresse email</h2>
-        <form method="POST" use:enhance class="flex flex-col gap-2">
+	<div
+		class="full-width variant-gradient-primary-secondary flex flex-col gap-2 bg-gradient-to-br p-4"
+	>
+		<h1 class="text-center text-xl font-semibold">Réinitialiser son mots de passe</h1>
+		<p class="text-leg text-center">
+			Vous êtes sur le point de réinitialiser votre mots de passe. Veuillez saisir votre adresse
+			email.
+		</p>
+	</div>
+	<div class="card flex flex-col gap-2 p-4">
+		<h2 class="text-center text-lg font-semibold text-primary-500">Saisir votre adresse email</h2>
+		<form method="POST" use:enhance class="flex flex-col gap-2">
 			<label for="email" class="ml-2 block text-sm font-medium">E-mail</label>
-				<input
-					class="mt-1 block w-full border border-gray-300 px-3 py-2 shadow-sm rounded-token focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm text-black"
-					type="email"
-					name="email"
-					placeholder="Example: myteam@gmail.com"
-					aria-invalid={$errors.email ? 'true' : undefined}
-					bind:value={$form.email}
-				/>
-				{#if $errors.email}
-					<p class="mt-2 text-sm text-error-500">{$errors.email}</p>
-				{/if}
-            <button class="btn variant-gradient-secondary-primary text-nowrap bg-gradient-to-br font-bold" type="submit">Réinitialiser</button>
-        </form>
-    </div>
+			<input
+				class="mt-1 block w-full border border-gray-300 px-3 py-2 text-black shadow-sm rounded-token focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+				type="email"
+				name="email"
+				placeholder="Example: myteam@gmail.com"
+				aria-invalid={$errors.email ? 'true' : undefined}
+				bind:value={$form.email}
+			/>
+			{#if $errors.email}
+				<p class="mt-2 text-sm text-error-500">{$errors.email}</p>
+			{/if}
+			<button
+				class="btn variant-gradient-secondary-primary text-nowrap bg-gradient-to-br font-bold"
+				type="submit">Réinitialiser</button
+			>
+		</form>
+	</div>
 </section>

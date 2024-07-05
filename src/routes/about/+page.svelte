@@ -30,7 +30,9 @@
 </script>
 
 <section class="content-grid flow">
-	<div class="full-width grid place-content-center p-4 bg-gradient-to-br variant-gradient-primary-secondary">
+	<div
+		class="full-width variant-gradient-primary-secondary grid place-content-center bg-gradient-to-br p-4"
+	>
 		<h2>A propos de nous</h2>
 		<p>
 			Bienvenue sur Handy Team, la plateforme innovante dédiée à la gestion des équipes et des
@@ -98,7 +100,9 @@
 			serons ravis de vous aider.
 		</p>
 	</div>
-	<div class="full-width grid place-content-center p-4 bg-gradient-to-br variant-gradient-primary-secondary">
+	<div
+		class="full-width variant-gradient-primary-secondary grid place-content-center bg-gradient-to-br p-4"
+	>
 		<h2>Roadmap</h2>
 		<p class="text-center">C'est ici que nous vous informerons sur le futur de l'application</p>
 	</div>

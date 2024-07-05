@@ -57,7 +57,7 @@
 			{:else}
 				<ul class="flex flex-col gap-2">
 					{#each team?.expand?.players as player}
-						<li class="grid w-full grid-cols-2 lg:grid-cols-4 items-center justify-between gap-2">
+						<li class="grid w-full grid-cols-2 items-center justify-between gap-2 lg:grid-cols-4">
 							<Avatar
 								src={player.picture != ''
 									? getImageURL(player.collectionId, player.id, player.picture, '24x24')

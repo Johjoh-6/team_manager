@@ -52,7 +52,7 @@
 					>Pseudo <span class="text-xs opacity-85">: optionel</span></label
 				>
 				<input
-					class="mt-1 block w-full border border-gray-300 px-3 py-2 shadow-sm rounded-token focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm text-black"
+					class="mt-1 block w-full border border-gray-300 px-3 py-2 text-black shadow-sm rounded-token focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
 					type="text"
 					name="text"
 					placeholder="team admin"
@@ -67,7 +67,7 @@
 				<!-- svelte-ignore a11y-label-has-associated-control -->
 				<label class="ml-2 block text-sm font-medium">E-mail</label>
 				<input
-					class="mt-1 block w-full border border-gray-300 px-3 py-2 shadow-sm rounded-token focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm text-black"
+					class="mt-1 block w-full border border-gray-300 px-3 py-2 text-black shadow-sm rounded-token focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
 					type="email"
 					name="email"
 					placeholder="Example: myteam@gmail.com"
@@ -106,7 +106,7 @@
 					S'enregistrer
 				</button>
 				<button
-					class="btn variant-soft-primary w-full text-nowrap rounded-token hover:bg-secondary-active-token"
+					class="variant-soft-primary btn w-full text-nowrap rounded-token hover:bg-secondary-active-token"
 					type="button"
 					tabindex="0"
 					on:click={() => {

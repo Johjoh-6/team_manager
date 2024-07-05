@@ -14,7 +14,7 @@
 		t = {
 			message: 'Joueur réclamé avec succès',
 			background: 'bg-green-500',
-			classes: 'text-black',
+			classes: 'text-black'
 		};
 		toastStore.trigger(t);
 		goto('/teams');
@@ -22,7 +22,7 @@
 		t = {
 			message: 'Erreur lors de la réclamation du joueur',
 			background: 'bg-error-500',
-			classes: 'text-black',
+			classes: 'text-black'
 		};
 		toastStore.trigger(t);
 	}

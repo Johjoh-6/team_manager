@@ -58,7 +58,7 @@
 		t = {
 			message: 'Modification éffectuée avec succès',
 			background: 'bg-green-500',
-			classes: 'text-black',
+			classes: 'text-black'
 		};
 		toastStore.trigger(t);
 		goto('/manager');
@@ -66,7 +66,7 @@
 		t = {
 			message: 'Erreur lors de la modification',
 			background: 'bg-error-500',
-			classes: 'text-black',
+			classes: 'text-black'
 		};
 		toastStore.trigger(t);
 	}

@@ -40,7 +40,7 @@
 	<title>Modifier l'événement {data.event.name}</title>
 </svelte:head>
 
-<section class="content-grid content-grid justify-center mt-2">
+<section class="content-grid content-grid mt-2 justify-center">
 	<div
 		class="bg-surface-300-600-token flex w-full flex-col gap-4 p-8 shadow-md rounded-container-token"
 	>

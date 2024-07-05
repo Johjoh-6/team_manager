@@ -59,7 +59,7 @@
 		t = {
 			message: 'Évenement supprimé',
 			background: 'bg-green-500',
-			classes: 'text-black',
+			classes: 'text-black'
 		};
 		toastStore.trigger(t);
 		goto('/players');
@@ -67,7 +67,7 @@
 		t = {
 			message: 'Erreur lors de la suppression',
 			background: 'bg-error-500',
-			classes: 'text-black',
+			classes: 'text-black'
 		};
 		toastStore.trigger(t);
 	}

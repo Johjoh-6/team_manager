@@ -50,7 +50,7 @@
 				<!-- svelte-ignore a11y-label-has-associated-control -->
 				<label class="ml-2 block text-sm font-medium">E-mail</label>
 				<input
-					class="mt-1 block w-full border border-gray-300 px-3 py-2 shadow-sm rounded-token focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm text-black "
+					class="mt-1 block w-full border border-gray-300 px-3 py-2 text-black shadow-sm rounded-token focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
 					type="email"
 					name="email"
 					placeholder="Example: myteam@gmail.com"
@@ -71,9 +71,8 @@
 
 				<a
 					href="/reset-password"
-					class="mt-2 ml-1 text-sm text-indigo-600 hover:text-indigo-500"
-					tabindex="-1"
-					>Mots de passe oublié ?</a
+					class="ml-1 mt-2 text-sm text-indigo-600 hover:text-indigo-500"
+					tabindex="-1">Mots de passe oublié ?</a
 				>
 			</div>
 			<div class="flex w-full flex-nowrap justify-between gap-2">
@@ -86,7 +85,7 @@
 					Se connecter
 				</button>
 				<button
-					class="btn variant-soft-primary w-full text-nowrap rounded-token hover:bg-secondary-active-token"
+					class="variant-soft-primary btn w-full text-nowrap rounded-token hover:bg-secondary-active-token"
 					type="button"
 					tabindex="0"
 					on:click={() => {
