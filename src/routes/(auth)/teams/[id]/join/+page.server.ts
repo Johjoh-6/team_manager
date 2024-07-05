@@ -4,12 +4,17 @@ import { ClientResponseError } from 'pocketbase';
 import { claimSchema } from '$lib/models/schemaClaim';
 import { zod } from 'sveltekit-superforms/adapters';
 import { message, superValidate } from 'sveltekit-superforms';
+import isRole from '$lib/utils/isRole';
+import { Roles } from '$lib/enum/rolesEnum';
 
 export const load = (async ({ params, locals }) => {
 	if (!locals.user) {
 		redirect(303, '/login');
 	}
 	try {
+		if(!isRole(Roles.USER, locals.user?.expand.role)){
+			throw new Error('Unauthorized');
+		}
 		const { id } = params;
 		if (!id) {
 			throw new Error('Id is missing');
