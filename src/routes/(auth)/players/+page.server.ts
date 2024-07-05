@@ -23,7 +23,6 @@ export const load = (async ({ locals, url }) => {
 		}
 		const players = await locals.pb.collection('players').getList(page, perPage, option);
 		return {
-			userId: locals.user.id,
 			players: players.items,
 			totalPages: players.totalPages,
 			currentPage: players.page,
@@ -33,7 +32,6 @@ export const load = (async ({ locals, url }) => {
 	} catch (err) {
 		console.error(err);
 		return {
-			userId: locals.user.id,
 			players: [],
 			totalPages: 0,
 			currentPage: 0,

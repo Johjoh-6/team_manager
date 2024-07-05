@@ -187,7 +187,7 @@
 						</div>
 					</svelte:fragment>
 					<svelte:fragment slot="footer">
-						{#if data.isManager || player.user_link == data.userId}
+						{#if data.isManager || player.user_link == data.idUser}
 							<a href="/players/edit-{player.id}" class="variant-filled-secondary btn font-bold"
 								>Modifier</a
 							>

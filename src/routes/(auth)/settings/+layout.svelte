@@ -26,7 +26,7 @@
 <svelte:window bind:innerWidth={clientWidth} />
 
 <div class="grid w-full md:grid-cols-[auto_1fr]">
-	{#if clientWidth > 1024}
+	{#if clientWidth > 768}
 		<AppRail background="transparant">
 			{#each navigation as navItem}
 				<AppRailAnchor href={navItem.href} selected={$page.url.pathname === navItem.href}

@@ -42,7 +42,7 @@
 	<title>Crée un Joueur</title>
 </svelte:head>
 
-<section class="content-grid content-grid justify-center p-4">
+<section class="content-grid content-grid justify-center mt-2">
 	<div
 		class="bg-surface-300-600-token flex w-full flex-col gap-4 p-8 shadow-md rounded-container-token"
 	>

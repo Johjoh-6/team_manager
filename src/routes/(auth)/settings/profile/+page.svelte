@@ -31,7 +31,7 @@
 	}
 </script>
 
-<div class="flow bg-surface-300-600-token w-full max-w-md p-8 shadow-md rounded-container-token">
+<div class="flow bg-surface-300-600-token w-full max-w-md p-4 shadow-md rounded-container-token">
 	<h1 class="mb-8 text-center text-4xl font-bold">Profil</h1>
 	<form class="grid gap-2 space-y-6" use:enhance method="POST">
 		<label class="label" for="first_name">

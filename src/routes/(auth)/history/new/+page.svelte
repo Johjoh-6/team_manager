@@ -42,9 +42,9 @@
 	<title>Crée un historique du match</title>
 </svelte:head>
 
-<section class="content-grid content-grid justify-center p-4">
+<section class="content-grid content-grid justify-center mt-2">
 	<div
-		class="bg-surface-300-600-token flex w-full flex-col gap-4 p-8 shadow-md rounded-container-token"
+		class="bg-surface-300-600-token flex w-full flex-col gap-4 p-4 shadow-md rounded-container-token"
 	>
 		<h1 class="text-center text-3xl font-semibold text-primary-500">Crée un historique du match</h1>
 		<form class="form grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4" use:enhance method="POST">

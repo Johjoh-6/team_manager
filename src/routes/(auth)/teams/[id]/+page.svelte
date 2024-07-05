@@ -57,7 +57,7 @@
 			{:else}
 				<ul class="flex flex-col gap-2">
 					{#each team?.expand?.players as player}
-						<li class="grid w-full grid-cols-4 items-center justify-between gap-2">
+						<li class="grid w-full grid-cols-2 lg:grid-cols-4 items-center justify-between gap-2">
 							<Avatar
 								src={player.picture != ''
 									? getImageURL(player.collectionId, player.id, player.picture, '24x24')
@@ -86,6 +86,9 @@
 				</ul>
 			{/if}
 		</CardsBasic>
+	{/if}
+	{#if team && team.expand && team.expand.manager && team.expand.manager.id === data.idUser}
+		<a href={`/teams/${team.id}/edit`} class="variant-filled-primary btn">Modifier</a>
 	{/if}
 	{#if !data.team}
 		<a href={`/teams/${team.id}/join`} class="variant-filled-primary btn">Rejoindre</a>

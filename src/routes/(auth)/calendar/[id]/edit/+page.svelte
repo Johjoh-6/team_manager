@@ -38,7 +38,7 @@
 	<title>Modifier l'événement {data.event.name}</title>
 </svelte:head>
 
-<section class="content-grid content-grid justify-center p-4">
+<section class="content-grid content-grid justify-center mt-2">
 	<div
 		class="bg-surface-300-600-token flex w-full flex-col gap-4 p-8 shadow-md rounded-container-token"
 	>
@@ -72,7 +72,7 @@
 				{/if}
 			</label>
 
-			<label class="label col-span-2" for="location">
+			<label class="label md:col-span-2" for="location">
 				<span>Location</span>
 				<input
 					class="input {$errors.location && 'input-error'}"
@@ -113,7 +113,7 @@
 				{/if}
 			</label>
 
-			<label class="label md:col-span-2">
+			<label class="label md:md:col-span-2">
 				<span>Notes </span><span class="text-token text-xs opacity-85"> (facultatif)</span>
 				<textarea
 					class="textarea {$errors.note && 'input-error'}"
@@ -128,7 +128,7 @@
 				{/if}
 			</label>
 
-			<button type="submit" class="variant-filled-primary btn mt-2 md:col-span-2"
+			<button type="submit" class="variant-filled-primary btn mt-2 md:md:col-span-2"
 				>Enregistrer</button
 			>
 		</form>

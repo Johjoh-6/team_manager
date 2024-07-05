@@ -4,8 +4,6 @@ import { message, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import { ClientResponseError, type RecordModel } from 'pocketbase';
 import { serialize } from 'object-to-formdata';
-import isRole from '$lib/utils/isRole';
-import { Roles } from '$lib/enum/rolesEnum';
 import { PlayerSchema } from '$lib/models/schemaPlayer';
 import formatDateTime from '$lib/utils/formatDateTime';
 
@@ -15,15 +13,10 @@ export const load = (async ({ locals, params }) => {
 		if (!locals.user) {
 			redirect(303, '/login');
 		}
-		const player = await locals.pb.collection('players').getOne(id);
+		const player = await locals.pb.collection('players').getOne(id, {
+			expand: 'player_via_team'
+		});
 
-		if (
-			(!isRole(Roles.MANAGER, locals.user?.expand.role) ||
-				!isRole(Roles.PLAYER, locals.user?.expand.role)) &&
-			player.user_link !== locals.user.id
-		) {
-			throw new Error('Forbidden');
-		}
 		const getPositionList = async (): Promise<RecordModel[]> => {
 			try {
 				const list = await locals.pb.collection('positions').getFullList();
