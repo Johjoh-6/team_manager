@@ -191,6 +191,11 @@
 					>
 				</footer>
 			</div>
+			<a href="/about" 
+			class="btn p-2 text-xl font-semibold hover:variant-ghost-primary bg-primary-500"
+			data-sveltekit-preload-data="hover">
+				A propos de Teams Handi
+			</a>
 		</section>
 	{/if}
 </section>
