@@ -22,7 +22,7 @@ export const load = (async ({ locals, params }) => {
 				const list = await locals.pb.collection('positions').getFullList();
 				return list ? list : [];
 			} catch (err) {
-				console.log('Error: ', err);
+				console.error('Error: ', err);
 				return [];
 			}
 		};
