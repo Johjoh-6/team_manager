@@ -192,7 +192,7 @@
 				</footer>
 			</div>
 			<a href="/about" 
-			class="btn p-2 text-xl font-semibold hover:variant-ghost-primary bg-primary-500"
+			class="btn p-2 text-xl font-semibold hover:text-token hover:ring-primary-400-500-token hover:bg-transparent bg-primary-500  text-white"
 			data-sveltekit-preload-data="hover">
 				A propos de Teams Handi
 			</a>
