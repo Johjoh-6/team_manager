@@ -1,10 +1,10 @@
-# Team handi
+# Teams handi
 
 Sport Team manager web app for person with disability.
 
 ## Description
 
-Team Handi provide a team manager with some features to help manage a sport team. The app is designed for person with disability. The app is developed with the following technologies:
+Teams Handi provide a team manager with some features to help manage a sport team. The app is designed for person with disability. The app is developed with the following technologies:
 
 - Frontend: Svelte with Sveltekit
 - Backend: Go (Pocketbase extension)

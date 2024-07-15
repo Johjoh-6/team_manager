@@ -39,7 +39,7 @@
 </script>
 
 <svelte:head>
-	<title>Se connecter Handi Team</title>
+	<title>Se connecter Teams Handi</title>
 </svelte:head>
 
 <section id="login-form" class="content-grid h-full place-items-center">

@@ -35,10 +35,10 @@
 	>
 		<h2>A propos de nous</h2>
 		<p>
-			Bienvenue sur Handi Team, la plateforme innovante dédiée à la gestion des équipes et des
+			Bienvenue sur Teams Handi, la plateforme innovante dédiée à la gestion des équipes et des
 			matchs pour les sports adaptés. Nous croyons que chaque athlète, qu'il soit valide ou en
 			situation de handicap, mérite les meilleurs outils pour gérer et optimiser ses performances.
-			C'est pourquoi nous avons créé Handi Team, une solution complète et intuitive pour les
+			C'est pourquoi nous avons créé Teams Handi, une solution complète et intuitive pour les
 			fédérations sportives, les managers, et les capitaines d'équipe.
 		</p>
 	</div>
@@ -81,14 +81,14 @@
 			Notre équipe est composée de passionnés de sport et de technologie, dévoués à créer une
 			plateforme qui répond aux besoins spécifiques des sports adaptés. Nous travaillons en étroite
 			collaboration avec des fédérations sportives, des entraîneurs, des managers et des athlètes
-			pour nous assurer que Handi Team est une solution pratique et efficace.
+			pour nous assurer que Teams Handi est une solution pratique et efficace.
 		</p>
 	</div>
 	<div class="card grid place-content-center p-4">
 		<h3>Rejoignez-nous</h3>
 		<p>
 			Nous sommes toujours à la recherche de nouveaux talents pour rejoindre notre équipe et nous
-			aider à améliorer Handi Team. Si vous partagez notre passion pour le sport et la technologie,
+			aider à améliorer Teams Handi. Si vous partagez notre passion pour le sport et la technologie,
 			n'hésitez pas à nous contacter pour en savoir plus sur les opportunités disponibles.
 		</p>
 	</div>
