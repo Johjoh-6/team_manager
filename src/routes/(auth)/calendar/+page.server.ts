@@ -11,14 +11,18 @@ export const load = (async ({ url, locals }) => {
 		const perPage = Number(url.searchParams.get('perPage')) || 10;
 		const search = url.searchParams.get('search') || '';
 
+		let filterString = 'date_start > @now';
+		let filterParam: Record<string, any> = {};
+		if (search) {
+			filterString += "&& name~{:search}";
+			filterParam = { search };
+		}
+
 		const option: Record<string, string> = {
 			expand: 'type',
 			fields: '*,expand.type.name',
-			filter: 'date_start > @now'
+			filter: locals.pb.filter(filterString, filterParam)
 		};
-		if (search) {
-			option.filter = `name~"${search}"`;
-		}
 		const events = await locals.pb.collection('events').getList(page, perPage, option);
 
 		return {

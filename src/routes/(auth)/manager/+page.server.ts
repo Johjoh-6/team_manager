@@ -20,17 +20,17 @@ export const load = (async ({ locals, url, parent }) => {
 		const search = url.searchParams.get('search') || '';
 
 		let filterString = 'teamID={:team} && created>{:sevenDaysAgo}';
+		let filterParam: Record<string, any> = { team: team.id, sevenDaysAgo: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()};
 		if (search) {
 			filterString += `&& (playerID.first_name~"${search}" || playerID.last_name~"${search}")`;
+			filterParam = { ...filterParam, search: search};
 		}
 		const option: Record<string, string> = {
 			expand: 'playerID',
 			fields: '*,expand.playerID.last_name,expand.playerID.first_name',
-			filter: locals.pb.filter(filterString, {
-				team: team.id,
-				sevenDaysAgo: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
-			})
+			filter: locals.pb.filter(filterString, filterParam)
 		};
+		
 		const claims = await locals.pb.collection('claim_requests').getList(page, perPage, option);
 		return {
 			claims: claims.items,

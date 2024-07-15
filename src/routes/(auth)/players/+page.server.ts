@@ -13,14 +13,19 @@ export const load = (async ({ locals, url }) => {
 		const perPage = Number(url.searchParams.get('perPage')) || 10;
 		const search = url.searchParams.get('search') || '';
 
+		let filterString = '';
+		let filterParam: Record<string,any>= {};
+		if (search) {
+			filterString += "first_name~{:search} || last_name~{:search} || player_number~{:search}";
+			filterParam = { search };
+		}
+
 		const option: RecordListOptions = {
 			expand: 'position',
 			fields: '*,expand.position.name',
+			filter: locals.pb.filter(filterString, filterParam),
 			requestKey: null
 		};
-		if (search) {
-			option.filter = `first_name~"${search}" || last_name~"${search}" || player_number~"${search}"`;
-		}
 		const players = await locals.pb.collection('players').getList(page, perPage, option);
 		return {
 			players: players.items,

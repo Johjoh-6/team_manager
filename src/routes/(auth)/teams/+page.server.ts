@@ -1,5 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
+import type { RecordListOptions } from 'pocketbase';
 
 export const load = (async ({ url, locals }) => {
 	if (!locals.user) {
@@ -11,10 +12,16 @@ export const load = (async ({ url, locals }) => {
 		const perPage = Number(url.searchParams.get('perPage')) || 10;
 		const search = url.searchParams.get('search') || '';
 
-		const option: Record<string, string> = {};
+		let filterString = '';
+		let filterParam: Record<string,any>= {};
 		if (search) {
-			option.filter = `name~"${search}"`;
+			filterString += "name~{:search} ";
+			filterParam = { search };
 		}
+		
+		const option: RecordListOptions = {
+			filter: locals.pb.filter(filterString, filterParam),
+		};
 		const teams = await locals.pb.collection('teams_info').getList(page, perPage, option);
 
 		return {

@@ -11,13 +11,19 @@ export const load = (async ({ locals, url }) => {
 		const perPage = Number(url.searchParams.get('perPage')) || 10;
 		const search = url.searchParams.get('search') || '';
 
+		let filterString = '';
+		let filterParam: Record<string,any>= {};
+		if (search) {
+			filterString += "name~{:search} || team_opponent_name~{:search}";
+			filterParam = { search };
+		}
+
 		const option: Record<string, string> = {
-			expand: 'team_opponent,team'
+			expand: 'team_opponent,team',
+			filter: locals.pb.filter(filterString, filterParam),
 			// fields: '*,expand.team.name,expand.team_opponent.name,expand.team.logo,expand.team_opponent.logo,expand.team.sport.name,expand.team.collectionId,expand.team.id,expand.team_opponent.id'
 		};
-		if (search) {
-			option.filter = `name~"${search}" || team_opponent_name~"${search}"`;
-		}
+
 		const histories = await locals.pb.collection('match_history').getList(page, perPage, option);
 
 		return {
