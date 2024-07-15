@@ -179,9 +179,9 @@
 							<h4 class="font-lg col-span-2 font-semibold text-primary-500">Handicap</h4>
 							<p class="text-primary-500">Point</p>
 							<p class="text-primary-500">Description</p>
-							<p>{player.handy_point}</p>
-							{#if player.handy_comment}
-								<p>{player.handy_comment}</p>
+							<p>{player.handi_point}</p>
+							{#if player.handi_comment}
+								<p>{player.handi_comment}</p>
 							{:else}
 								<p>Non renseigné</p>
 							{/if}

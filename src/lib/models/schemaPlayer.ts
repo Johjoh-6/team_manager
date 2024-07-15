@@ -20,8 +20,8 @@ const PlayerSchema = z.object({
 	biography: z.string().optional(),
 	claimed: z.boolean().optional(),
 	user_link: z.string().optional(),
-	handy_point: z.number().int().optional(),
-	handy_comment: z.string().optional()
+	handi_point: z.number().int().optional(),
+	handi_comment: z.string().optional()
 });
 
 export { PlayerSchema };

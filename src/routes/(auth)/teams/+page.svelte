@@ -99,7 +99,7 @@
 			{#each data.teams as team}
 				<AccordionItem>
 					<svelte:fragment slot="lead">
-						<!-- add logo team handy -->
+						<!-- add logo team handi -->
 						<Avatar
 							width="w-12 md:w-16"
 							src={team.logo != ''

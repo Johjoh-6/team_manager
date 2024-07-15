@@ -140,19 +140,19 @@
 					<p class="text-error-500">{$errors.biography}</p>
 				{/if}
 			</label>
-			<label class="label md:col-span-2" for="handy_point">
-				<span>handy_point</span>
+			<label class="label md:col-span-2" for="handi_point">
+				<span>Nombre de point handi</span>
 				<input
-					class="input {$errors.handy_point && 'input-error'}"
+					class="input {$errors.handi_point && 'input-error'}"
 					type="number"
 					min="-100"
 					max="100"
-					id="handy_point"
-					name="handy_point"
-					bind:value={$form.handy_point}
+					id="handi_point"
+					name="handi_point"
+					bind:value={$form.handi_point}
 				/>
-				{#if $errors.handy_point}
-					<p class="text-error-500">{$errors.handy_point}</p>
+				{#if $errors.handi_point}
+					<p class="text-error-500">{$errors.handi_point}</p>
 				{/if}
 			</label>
 			<label class="label md:md:col-span-2">
@@ -160,15 +160,15 @@
 					(facultatif)</span
 				>
 				<textarea
-					class="textarea {$errors.handy_comment && 'input-error'}"
+					class="textarea {$errors.handi_comment && 'input-error'}"
 					rows="4"
 					placeholder="Biographie."
-					id="handy_comment"
-					name="handy_comment"
-					bind:value={$form.handy_comment}
+					id="handi_comment"
+					name="handi_comment"
+					bind:value={$form.handi_comment}
 				/>
-				{#if $errors.handy_comment}
-					<p class="text-error-500">{$errors.handy_comment}</p>
+				{#if $errors.handi_comment}
+					<p class="text-error-500">{$errors.handi_comment}</p>
 				{/if}
 			</label>
 			<label class="label md:col-span-2" for="height">

@@ -4,7 +4,7 @@
 
 <div class="flex w-full flex-col justify-center gap-2 p-1 md:flex-row">
 	<p class="text-tertiary-700-200-token text-nowrap text-center">
-		Copyright Handy Team 2024 - {year}
+		Copyright Handi Team 2024 - {year}
 	</p>
 	<a
 		href="/rgpd"

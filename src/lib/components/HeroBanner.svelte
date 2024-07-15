@@ -17,7 +17,7 @@
 		class="full-width banner-hero relative grid place-content-center bg-cover bg-center text-center"
 		style="background-image: url('{HandiBasket}') ;"
 	>
-		<h1 class=" text-4xl font-bold text-white">Bienvenue sur Teams Handy</h1>
+		<h1 class=" text-4xl font-bold text-white">Bienvenue sur Teams Handi</h1>
 	</div>
 {/if}
 

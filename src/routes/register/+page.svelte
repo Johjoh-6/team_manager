@@ -39,7 +39,7 @@
 </script>
 
 <svelte:head>
-	<title>S'enregistrer Handy Team</title>
+	<title>S'enregistrer Handi Team</title>
 </svelte:head>
 
 <section id="register-form" class="content-grid h-full place-items-center">

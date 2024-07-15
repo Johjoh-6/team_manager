@@ -14,9 +14,9 @@
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
-		"docker": "docker build -t team-handy .",
-		"docker:linux": "docker build -t team-handy . --platform=linux/amd64",
-		"docker:tar": "docker save team-handy > image-linux.tar"
+		"docker": "docker build -t team-handi .",
+		"docker:linux": "docker build -t team-handi . --platform=linux/amd64",
+		"docker:tar": "docker save team-handi > image-linux.tar"
 	},
 	"devDependencies": {
 		"@floating-ui/dom": "1.6.5",

@@ -28,7 +28,7 @@
 			<img src="/HT_logo.png" alt="logo" class="h-8 w-8" />
 		</a>
 	</svelte:fragment>
-	<strong class="text-nowrap text-2xl uppercase text-primary-500">Handy Team</strong>
+	<strong class="text-nowrap text-2xl uppercase text-primary-500">Handi Team</strong>
 	<svelte:fragment slot="trail">
 		{#if $page.data.isConnected}
 			<button class="btn btn-sm lg:hidden" on:click={handleClick}>

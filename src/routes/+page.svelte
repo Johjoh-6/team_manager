@@ -16,7 +16,7 @@
 </script>
 
 <svelte:head>
-	<title>Teams Handy</title>
+	<title>Teams Handi</title>
 </svelte:head>
 
 <section class="content-grid flow">
