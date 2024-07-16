@@ -92,7 +92,7 @@
 					{#if newPlayers}
 						<ul>
 							{#each newPlayers as player}
-								<li class="flex w-full flex-nowrap items-center justify-between gap-2">
+								<li class="flex w-full flex-nowrap items-center justify-between gap-2 mt-2">
 									<Avatar
 										src={player.picture != ''
 											? getImageURL(player.collectionId, player.id, player.picture, '24x24')
