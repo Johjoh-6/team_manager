@@ -146,14 +146,16 @@
 							<p>{history.score} <strong>/</strong> {history.score_opponent}</p>
 							<p>
 								{history.expand?.team.name} <strong>/</strong>
-								{history.expand?.team_opponent
-									? history.expand?.team_opponent.name
-									: history.expand?.team_opponent_name}
+								{#if history.expand?.team_opponent}
+									{history.expand?.team_opponent.name}
+								{:else}
+									{history.team_opponent_name}
+								{/if}
 							</p>
 							<p>{dateFormatFr(history.match_date)}</p>
-							<p>{history.expand?.team.sport.name}</p>
+							<p>{history.expand?.team.expand.sport.name}</p>
 							{#if history.description}
-								<p>{history.description}</p>
+								<div class="">{@html history.description}</div>
 							{/if}
 							{#if history.team === data.team?.id && data.isManager}
 								<a href="/history/edit-{history.id}" class="variant-ghost-primary btn"

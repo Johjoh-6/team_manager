@@ -19,13 +19,11 @@ export const load = (async ({ locals, url }) => {
 		}
 
 		const option: Record<string, string> = {
-			expand: 'team_opponent,team',
+			expand: 'team_opponent,team.sport',
 			filter: locals.pb.filter(filterString, filterParam),
-			// fields: '*,expand.team.name,expand.team_opponent.name,expand.team.logo,expand.team_opponent.logo,expand.team.sport.name,expand.team.collectionId,expand.team.id,expand.team_opponent.id'
 		};
 
 		const histories = await locals.pb.collection('match_history').getList(page, perPage, option);
-
 		return {
 			histories: histories.items,
 			totalPages: histories.totalPages,
