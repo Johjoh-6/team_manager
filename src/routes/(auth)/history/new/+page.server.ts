@@ -7,7 +7,8 @@ import isRole from '$lib/utils/isRole';
 import { Roles } from '$lib/enum/rolesEnum';
 import { matchHistorySchema } from '$lib/models/schemaMatchHistory';
 
-export const load = (async ({ locals }) => {
+export const load = (async ({ locals,parent }) => {
+	const {team} = await parent();
 	try {
 		if (!isRole(Roles.MANAGER, locals.user?.expand.role)) {
 			throw new Error('Forbidden');
@@ -16,7 +17,10 @@ export const load = (async ({ locals }) => {
 		const getTeamsList = async (): Promise<RecordModel[]> => {
 			try {
 				const list = await locals.pb.collection('teams').getFullList({
-					fields: 'id,name'
+					fields: 'id,name',
+					filter: locals.pb.filter('sport={:sport}', { sport:
+						team?.sport ?? ''
+					 })
 				});
 				return list ? list : [];
 			} catch (err) {
