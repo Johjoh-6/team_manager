@@ -75,7 +75,7 @@
 	</form>
 	<form class="grid gap-2 space-y-6" use:enhanceUsername action="?/updateUsername" method="POST">
 		<label class="label" for="email">
-			<span>Email</span>
+			<span>Pseudo</span>
 			<input
 				class="input {$errorsUsername.username && 'input-error'}"
 				type="text"

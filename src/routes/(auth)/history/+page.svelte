@@ -74,7 +74,7 @@
 				></path></svg
 			>
 		</div>
-		<input type="search" placeholder="match ..." bind:value={search} />
+		<input type="search" placeholder="match ..." bind:value={search} on:keydown={handleKeySearch}/>
 		<button
 			class="variant-filled-secondary hover:variant-ghost-secondary"
 			on:click={handleSearch}

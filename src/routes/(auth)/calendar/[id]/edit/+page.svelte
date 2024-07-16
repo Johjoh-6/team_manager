@@ -2,6 +2,7 @@
 	import { superForm } from 'sveltekit-superforms';
 	import type { PageData } from './$types';
 	import { getToastStore, type ToastSettings } from '@skeletonlabs/skeleton';
+	import { goto } from '$app/navigation';
 
 	export let data: PageData;
 
@@ -17,7 +18,10 @@
 					message: 'Modification avec succès',
 					background: 'bg-success-500',
 					classes: 'text-black',
-					timeout: 3000
+					timeout: 3000,
+					callback: () => {
+						goto(`/calendar/${data.event.id}`);
+					}
 				};
 				toastStore.trigger(t);
 				return;
