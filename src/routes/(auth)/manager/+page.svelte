@@ -73,17 +73,17 @@
 </script>
 
 <svelte:head>
-	<title>Toutes les requetes</title>
+	<title>Toutes les requêtes</title>
 </svelte:head>
 
 <section class="content-grid flow">
 	<div class="flex flex-col gap-4 p-4 md:flex-row">
 		<h1 class="flex-grow text-center text-xl">
-			Tous les requetes <strong>({data.totalItems})</strong>
+			Tous les requêtes <strong>({data.totalItems})</strong>
 		</h1>
 	</div>
 
-	<p>Rechercher une requete</p>
+	<p>Rechercher une requête</p>
 	<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
 		<div class="input-group-shim">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="fill-token h-5 w-5"
@@ -92,7 +92,7 @@
 				></path></svg
 			>
 		</div>
-		<input type="search" placeholder="requete ..." bind:value={search} on:keydown={handleKeySearch}/>
+		<input type="search" placeholder="requête ..." bind:value={search} on:keydown={handleKeySearch}/>
 		<button
 			class="variant-filled-secondary hover:variant-ghost-secondary"
 			on:click={handleSearch}
@@ -111,7 +111,7 @@
 	</div>
 
 	{#if data.claims && data.claims.length === 0}
-		<p class="text-center">Pas de requete</p>
+		<p class="text-center">Pas de requête</p>
 		<button
 			class="btn bg-primary-500 font-bold text-white hover:text-token hover:ring-primary-400-500-token hover:bg-transparent"
 			on:click={handleReset}>Retour</button
@@ -175,7 +175,7 @@
 			labelNext="Page suivante"
 			labelPrevious="Page d'avant"
 			separatorText="sur"
-			amountText="requete"
+			amountText="requête"
 			on:page={onPageChange}
 			on:amount={onAmountChange}
 		/>

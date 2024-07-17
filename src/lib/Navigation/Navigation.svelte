@@ -84,7 +84,7 @@
 						href="/manager"
 						on:click={drawerClose}
 						aria-current={$page.url.pathname.startsWith('/manager') ? 'page' : undefined}
-						data-sveltekit-preload-data="hover">Requetes</a
+						data-sveltekit-preload-data="hover">Requêtes</a
 					>
 				</li>
 			{/if}
