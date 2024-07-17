@@ -21,7 +21,8 @@ export const load = (async ({ url, locals }) => {
 		const option: Record<string, string> = {
 			expand: 'type',
 			fields: '*,expand.type.name',
-			filter: locals.pb.filter(filterString, filterParam)
+			filter: locals.pb.filter(filterString, filterParam),
+			sort: 'date_start asc'
 		};
 		const events = await locals.pb.collection('events').getList(page, perPage, option);
 
