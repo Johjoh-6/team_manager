@@ -21,7 +21,7 @@ export const load = (async ({ locals, url }) => {
 		const option: Record<string, string> = {
 			expand: 'team_opponent,team.sport',
 			filter: locals.pb.filter(filterString, filterParam),
-			sort: '-date'
+			sort: '-match_date'
 		};
 
 		const histories = await locals.pb.collection('match_history').getList(page, perPage, option);
