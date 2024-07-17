@@ -22,7 +22,7 @@ export const load = (async ({ url, locals }) => {
 			expand: 'type',
 			fields: '*,expand.type.name',
 			filter: locals.pb.filter(filterString, filterParam),
-			sort: 'date_start asc'
+			sort: 'date_start'
 		};
 		const events = await locals.pb.collection('events').getList(page, perPage, option);
 
